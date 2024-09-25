@@ -1,0 +1,1802 @@
+[
+  {
+    "read_date": "2023-02-20 00:42:22",
+    "measured": "296.24",
+    "status": "C",
+    "observations": "Nivel bajo, Sin novedad"
+  },
+  {
+    "read_date": "2023-02-20 04:42:22",
+    "measured": "309.46",
+    "status": "D",
+    "observations": "Sin novedad, Consumo elevado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-02-20 08:42:22",
+    "measured": "323.69",
+    "status": "D",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-02-20 12:42:22",
+    "measured": "337.45",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-20 16:42:22",
+    "measured": "343.36",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Consumo elevado, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-20 20:42:22",
+    "measured": "357.38",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n, Revisi\u00f3n t\u00e9cnica, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-02-21 00:42:22",
+    "measured": "352.89",
+    "status": "C",
+    "observations": "Nivel bajo, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-02-21 04:42:22",
+    "measured": "350.03",
+    "status": "C",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-02-21 08:42:22",
+    "measured": "355.12",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n, Nivel bajo, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-02-21 12:42:22",
+    "measured": "374.52",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-21 16:42:22",
+    "measured": "386.41",
+    "status": "D",
+    "observations": "Cambio de filtro, Nivel bajo, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-21 20:42:22",
+    "measured": "382.51",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Revisi\u00f3n t\u00e9cnica, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-22 00:42:22",
+    "measured": "390.11",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-22 04:42:22",
+    "measured": "388.97",
+    "status": "C",
+    "observations": "Cambio de filtro, Consumo elevado"
+  },
+  {
+    "read_date": "2023-02-22 08:42:22",
+    "measured": "407.18",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-02-22 12:42:22",
+    "measured": "402.52",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Reposici\u00f3n de agua, Consumo elevado"
+  },
+  {
+    "read_date": "2023-02-22 16:42:22",
+    "measured": "397.91",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-22 20:42:22",
+    "measured": "411.06",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-23 00:42:22",
+    "measured": "429.38",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Revisi\u00f3n t\u00e9cnica, Consumo elevado"
+  },
+  {
+    "read_date": "2023-02-23 04:42:22",
+    "measured": "445.68",
+    "status": "D",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-02-23 08:42:22",
+    "measured": "465.21",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Sin novedad, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-23 12:42:22",
+    "measured": "471.50",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n, Consumo elevado, Nivel bajo"
+  },
+  {
+    "read_date": "2023-02-23 16:42:22",
+    "measured": "468.61",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-23 20:42:22",
+    "measured": "488.02",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-02-24 00:42:22",
+    "measured": "497.63",
+    "status": "D",
+    "observations": "Cambio de filtro, Consumo elevado, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-02-24 04:42:22",
+    "measured": "507.37",
+    "status": "D",
+    "observations": "Consumo elevado, Sin novedad"
+  },
+  {
+    "read_date": "2023-02-24 08:42:22",
+    "measured": "502.94",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-02-24 12:42:22",
+    "measured": "514.76",
+    "status": "D",
+    "observations": "Mantenimiento programado, Nivel bajo"
+  },
+  {
+    "read_date": "2023-02-24 16:42:22",
+    "measured": "512.55",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-24 20:42:22",
+    "measured": "508.66",
+    "status": "C",
+    "observations": "Cambio de filtro, Reposici\u00f3n de agua, Nivel bajo"
+  },
+  {
+    "read_date": "2023-02-25 00:42:22",
+    "measured": "520.19",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-25 04:42:22",
+    "measured": "525.89",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-25 08:42:22",
+    "measured": "540.48",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Consumo elevado"
+  },
+  {
+    "read_date": "2023-02-25 12:42:22",
+    "measured": "536.11",
+    "status": "C",
+    "observations": "Consumo elevado, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-02-25 16:42:22",
+    "measured": "546.81",
+    "status": "D",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-02-25 20:42:22",
+    "measured": "565.40",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-02-26 00:42:22",
+    "measured": "563.91",
+    "status": "C",
+    "observations": "Consumo elevado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-02-26 04:42:22",
+    "measured": "561.69",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-02-26 08:42:22",
+    "measured": "559.25",
+    "status": "C",
+    "observations": "Sin novedad, Cambio de filtro, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-02-26 12:42:22",
+    "measured": "555.08",
+    "status": "C",
+    "observations": "Nivel bajo, Consumo elevado, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-26 16:42:22",
+    "measured": "571.40",
+    "status": "D",
+    "observations": "Cambio de filtro, Sin novedad, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-26 20:42:22",
+    "measured": "581.26",
+    "status": "D",
+    "observations": "Consumo elevado, Sin novedad"
+  },
+  {
+    "read_date": "2023-02-27 00:42:22",
+    "measured": "579.90",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-27 04:42:22",
+    "measured": "596.21",
+    "status": "D",
+    "observations": "Nivel bajo, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-02-27 08:42:22",
+    "measured": "592.28",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-27 12:42:22",
+    "measured": "610.89",
+    "status": "D",
+    "observations": "Consumo elevado, Sin novedad, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-02-27 16:42:22",
+    "measured": "608.81",
+    "status": "C",
+    "observations": "Consumo elevado, Reposici\u00f3n de agua, Nivel bajo"
+  },
+  {
+    "read_date": "2023-02-27 20:42:22",
+    "measured": "605.87",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-02-28 00:42:22",
+    "measured": "611.03",
+    "status": "D",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-02-28 04:42:22",
+    "measured": "607.57",
+    "status": "C",
+    "observations": "Nivel bajo, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-02-28 08:42:22",
+    "measured": "619.24",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Sin novedad"
+  },
+  {
+    "read_date": "2023-02-28 12:42:22",
+    "measured": "616.00",
+    "status": "C",
+    "observations": "Consumo elevado, Sin novedad"
+  },
+  {
+    "read_date": "2023-02-28 16:42:22",
+    "measured": "625.67",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Nivel bajo"
+  },
+  {
+    "read_date": "2023-02-28 20:42:22",
+    "measured": "637.89",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-01 00:42:22",
+    "measured": "653.39",
+    "status": "D",
+    "observations": "Cambio de filtro, Reposici\u00f3n de agua, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-01 04:42:22",
+    "measured": "659.91",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-01 08:42:22",
+    "measured": "671.69",
+    "status": "D",
+    "observations": "Mantenimiento programado, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-01 12:42:22",
+    "measured": "680.88",
+    "status": "D",
+    "observations": "Nivel bajo, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-01 16:42:22",
+    "measured": "678.29",
+    "status": "C",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-01 20:42:22",
+    "measured": "690.76",
+    "status": "D",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-02 00:42:22",
+    "measured": "686.14",
+    "status": "C",
+    "observations": "Sin novedad, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-02 04:42:22",
+    "measured": "695.76",
+    "status": "D",
+    "observations": "Cambio de filtro, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-02 08:42:22",
+    "measured": "693.19",
+    "status": "C",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-02 12:42:22",
+    "measured": "691.37",
+    "status": "C",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-02 16:42:22",
+    "measured": "708.04",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-02 20:42:22",
+    "measured": "706.53",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-03 00:42:22",
+    "measured": "704.86",
+    "status": "C",
+    "observations": "Mantenimiento programado, Reposici\u00f3n de agua, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-03 04:42:22",
+    "measured": "721.73",
+    "status": "D",
+    "observations": "Mantenimiento programado, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-03 08:42:22",
+    "measured": "718.72",
+    "status": "C",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-03 12:42:22",
+    "measured": "726.75",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-03 16:42:22",
+    "measured": "739.75",
+    "status": "D",
+    "observations": "Nivel bajo, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-03 20:42:22",
+    "measured": "738.03",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-04 00:42:22",
+    "measured": "734.03",
+    "status": "C",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-04 04:42:22",
+    "measured": "730.50",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-04 08:42:22",
+    "measured": "729.05",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Mantenimiento programado, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-04 12:42:22",
+    "measured": "745.25",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-04 16:42:22",
+    "measured": "761.87",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-04 20:42:22",
+    "measured": "769.73",
+    "status": "D",
+    "observations": "Cambio de filtro, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-05 00:42:22",
+    "measured": "768.31",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Cambio de filtro, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-05 04:42:22",
+    "measured": "774.36",
+    "status": "D",
+    "observations": "Mantenimiento programado, Alguna observaci\u00f3n, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-05 08:42:22",
+    "measured": "791.35",
+    "status": "D",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-05 12:42:22",
+    "measured": "789.22",
+    "status": "C",
+    "observations": "Cambio de filtro, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-05 16:42:22",
+    "measured": "807.80",
+    "status": "D",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-05 20:42:22",
+    "measured": "821.14",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-06 00:42:22",
+    "measured": "836.84",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-06 04:42:22",
+    "measured": "854.04",
+    "status": "D",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-06 08:42:22",
+    "measured": "868.07",
+    "status": "D",
+    "observations": "Mantenimiento programado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-06 12:42:22",
+    "measured": "874.69",
+    "status": "D",
+    "observations": "Cambio de filtro, Consumo elevado, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-06 16:42:22",
+    "measured": "870.09",
+    "status": "C",
+    "observations": "Sin novedad, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-06 20:42:22",
+    "measured": "885.03",
+    "status": "D",
+    "observations": "Nivel bajo, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-07 00:42:22",
+    "measured": "901.44",
+    "status": "D",
+    "observations": "Sin novedad, Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-07 04:42:22",
+    "measured": "908.58",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Consumo elevado, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-07 08:42:22",
+    "measured": "903.60",
+    "status": "C",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-07 12:42:22",
+    "measured": "917.22",
+    "status": "D",
+    "observations": "Nivel bajo, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-07 16:42:22",
+    "measured": "913.17",
+    "status": "C",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-07 20:42:22",
+    "measured": "923.12",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-08 00:42:22",
+    "measured": "937.70",
+    "status": "D",
+    "observations": "Mantenimiento programado, Alguna observaci\u00f3n, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-08 04:42:22",
+    "measured": "956.67",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-08 08:42:22",
+    "measured": "955.63",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Mantenimiento programado, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-08 12:42:22",
+    "measured": "962.14",
+    "status": "D",
+    "observations": "Mantenimiento programado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-08 16:42:22",
+    "measured": "959.66",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Mantenimiento programado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-08 20:42:22",
+    "measured": "955.55",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-09 00:42:22",
+    "measured": "950.75",
+    "status": "C",
+    "observations": "Cambio de filtro, Revisi\u00f3n t\u00e9cnica, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-09 04:42:22",
+    "measured": "970.10",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-09 08:42:22",
+    "measured": "985.31",
+    "status": "D",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-09 12:42:22",
+    "measured": "995.10",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Reposici\u00f3n de agua, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-09 16:42:22",
+    "measured": "1007.16",
+    "status": "D",
+    "observations": "Sin novedad, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-09 20:42:22",
+    "measured": "1021.20",
+    "status": "D",
+    "observations": "Consumo elevado, Reposici\u00f3n de agua, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-10 00:42:22",
+    "measured": "1017.69",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-10 04:42:22",
+    "measured": "1032.62",
+    "status": "D",
+    "observations": "Sin novedad, Mantenimiento programado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-10 08:42:22",
+    "measured": "1027.70",
+    "status": "C",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-10 12:42:22",
+    "measured": "1041.93",
+    "status": "D",
+    "observations": "Nivel bajo, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-10 16:42:22",
+    "measured": "1037.68",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-10 20:42:22",
+    "measured": "1055.63",
+    "status": "D",
+    "observations": "Sin novedad, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-11 00:42:22",
+    "measured": "1050.96",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-11 04:42:22",
+    "measured": "1063.89",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-11 08:42:22",
+    "measured": "1061.19",
+    "status": "C",
+    "observations": "Consumo elevado, Revisi\u00f3n t\u00e9cnica, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-11 12:42:22",
+    "measured": "1075.61",
+    "status": "D",
+    "observations": "Consumo elevado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-11 16:42:22",
+    "measured": "1086.18",
+    "status": "D",
+    "observations": "Sin novedad, Cambio de filtro, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-11 20:42:22",
+    "measured": "1101.28",
+    "status": "D",
+    "observations": "Sin novedad, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-12 00:42:22",
+    "measured": "1099.53",
+    "status": "C",
+    "observations": "Cambio de filtro, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-12 04:42:22",
+    "measured": "1097.78",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-12 08:42:22",
+    "measured": "1096.05",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-12 12:42:22",
+    "measured": "1108.53",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Nivel bajo, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-12 16:42:22",
+    "measured": "1104.64",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-12 20:42:22",
+    "measured": "1101.68",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-13 00:42:22",
+    "measured": "1097.64",
+    "status": "C",
+    "observations": "Consumo elevado, Alguna observaci\u00f3n, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-13 04:42:22",
+    "measured": "1094.88",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-13 08:42:22",
+    "measured": "1101.64",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-13 12:42:22",
+    "measured": "1098.46",
+    "status": "C",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-13 16:42:22",
+    "measured": "1095.88",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Consumo elevado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-13 20:42:22",
+    "measured": "1091.69",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-14 00:42:22",
+    "measured": "1089.09",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-14 04:42:22",
+    "measured": "1098.67",
+    "status": "D",
+    "observations": "Cambio de filtro, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-14 08:42:22",
+    "measured": "1113.01",
+    "status": "D",
+    "observations": "Consumo elevado, Cambio de filtro, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-14 12:42:22",
+    "measured": "1111.23",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-14 16:42:22",
+    "measured": "1106.76",
+    "status": "C",
+    "observations": "Mantenimiento programado, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-14 20:42:22",
+    "measured": "1102.11",
+    "status": "C",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-15 00:42:22",
+    "measured": "1111.09",
+    "status": "D",
+    "observations": "Mantenimiento programado, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-15 04:42:22",
+    "measured": "1124.39",
+    "status": "D",
+    "observations": "Mantenimiento programado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-15 08:42:22",
+    "measured": "1121.72",
+    "status": "C",
+    "observations": "Consumo elevado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-15 12:42:22",
+    "measured": "1119.46",
+    "status": "C",
+    "observations": "Cambio de filtro, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-15 16:42:22",
+    "measured": "1114.78",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-15 20:42:22",
+    "measured": "1111.26",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-16 00:42:22",
+    "measured": "1107.08",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Consumo elevado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-16 04:42:22",
+    "measured": "1102.90",
+    "status": "C",
+    "observations": "Consumo elevado, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-16 08:42:22",
+    "measured": "1108.36",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-16 12:42:22",
+    "measured": "1126.38",
+    "status": "D",
+    "observations": "Sin novedad, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-16 16:42:22",
+    "measured": "1121.68",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-16 20:42:22",
+    "measured": "1139.27",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Alguna observaci\u00f3n, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-17 00:42:22",
+    "measured": "1156.97",
+    "status": "D",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-17 04:42:22",
+    "measured": "1174.53",
+    "status": "D",
+    "observations": "Cambio de filtro, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-17 08:42:22",
+    "measured": "1186.79",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-17 12:42:22",
+    "measured": "1195.12",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-17 16:42:22",
+    "measured": "1212.72",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-17 20:42:22",
+    "measured": "1208.40",
+    "status": "C",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-18 00:42:22",
+    "measured": "1225.27",
+    "status": "D",
+    "observations": "Sin novedad, Nivel bajo, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-18 04:42:22",
+    "measured": "1223.86",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-18 08:42:22",
+    "measured": "1219.83",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-18 12:42:22",
+    "measured": "1230.24",
+    "status": "D",
+    "observations": "Consumo elevado, Reposici\u00f3n de agua, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-18 16:42:22",
+    "measured": "1243.75",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-18 20:42:22",
+    "measured": "1261.60",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-19 00:42:22",
+    "measured": "1278.17",
+    "status": "D",
+    "observations": "Mantenimiento programado, Sin novedad, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-19 04:42:22",
+    "measured": "1273.39",
+    "status": "C",
+    "observations": "Mantenimiento programado, Reposici\u00f3n de agua, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-19 08:42:22",
+    "measured": "1280.84",
+    "status": "D",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-19 12:42:22",
+    "measured": "1278.83",
+    "status": "C",
+    "observations": "Cambio de filtro, Mantenimiento programado, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-19 16:42:22",
+    "measured": "1293.37",
+    "status": "D",
+    "observations": "Nivel bajo, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-19 20:42:22",
+    "measured": "1288.38",
+    "status": "C",
+    "observations": "Mantenimiento programado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-20 00:42:22",
+    "measured": "1284.53",
+    "status": "C",
+    "observations": "Consumo elevado, Cambio de filtro, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-20 04:42:22",
+    "measured": "1281.06",
+    "status": "C",
+    "observations": "Cambio de filtro, Mantenimiento programado, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-20 08:42:22",
+    "measured": "1277.44",
+    "status": "C",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-20 12:42:22",
+    "measured": "1274.17",
+    "status": "C",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-20 16:42:22",
+    "measured": "1271.04",
+    "status": "C",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-20 20:42:22",
+    "measured": "1287.72",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-21 00:42:22",
+    "measured": "1286.31",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Reposici\u00f3n de agua, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-21 04:42:22",
+    "measured": "1285.00",
+    "status": "C",
+    "observations": "Mantenimiento programado, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-21 08:42:22",
+    "measured": "1283.22",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-21 12:42:22",
+    "measured": "1294.66",
+    "status": "D",
+    "observations": "Consumo elevado, Mantenimiento programado, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-21 16:42:22",
+    "measured": "1291.57",
+    "status": "C",
+    "observations": "Nivel bajo, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-21 20:42:22",
+    "measured": "1287.93",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Cambio de filtro, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-22 00:42:22",
+    "measured": "1283.98",
+    "status": "C",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-22 04:42:22",
+    "measured": "1280.84",
+    "status": "C",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-22 08:42:22",
+    "measured": "1296.18",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-22 12:42:22",
+    "measured": "1308.02",
+    "status": "D",
+    "observations": "Mantenimiento programado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-22 16:42:22",
+    "measured": "1305.02",
+    "status": "C",
+    "observations": "Mantenimiento programado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-22 20:42:22",
+    "measured": "1303.19",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-23 00:42:22",
+    "measured": "1301.35",
+    "status": "C",
+    "observations": "Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-23 04:42:22",
+    "measured": "1298.23",
+    "status": "C",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-23 08:42:22",
+    "measured": "1306.03",
+    "status": "D",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-23 12:42:22",
+    "measured": "1319.24",
+    "status": "D",
+    "observations": "Cambio de filtro, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-23 16:42:22",
+    "measured": "1315.90",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-23 20:42:22",
+    "measured": "1313.95",
+    "status": "C",
+    "observations": "Cambio de filtro, Revisi\u00f3n t\u00e9cnica, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-24 00:42:22",
+    "measured": "1333.80",
+    "status": "D",
+    "observations": "Consumo elevado, Sin novedad, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-24 04:42:22",
+    "measured": "1347.13",
+    "status": "D",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-24 08:42:22",
+    "measured": "1365.17",
+    "status": "D",
+    "observations": "Consumo elevado, Mantenimiento programado, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-24 12:42:22",
+    "measured": "1360.80",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Nivel bajo, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-24 16:42:22",
+    "measured": "1375.62",
+    "status": "D",
+    "observations": "Nivel bajo, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-24 20:42:22",
+    "measured": "1374.54",
+    "status": "C",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-25 00:42:22",
+    "measured": "1380.95",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Nivel bajo, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-25 04:42:22",
+    "measured": "1378.79",
+    "status": "C",
+    "observations": "Nivel bajo, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-25 08:42:22",
+    "measured": "1389.53",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Sin novedad, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-25 12:42:22",
+    "measured": "1388.15",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-25 16:42:22",
+    "measured": "1395.27",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-25 20:42:22",
+    "measured": "1413.39",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-26 00:42:22",
+    "measured": "1428.80",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-26 04:42:22",
+    "measured": "1425.52",
+    "status": "C",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-26 08:42:22",
+    "measured": "1422.48",
+    "status": "C",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-26 12:42:22",
+    "measured": "1434.34",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-26 16:42:22",
+    "measured": "1449.34",
+    "status": "D",
+    "observations": "Sin novedad, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-26 20:42:22",
+    "measured": "1445.85",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Cambio de filtro, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-27 00:42:22",
+    "measured": "1465.74",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n, Cambio de filtro, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-27 04:42:22",
+    "measured": "1478.89",
+    "status": "D",
+    "observations": "Cambio de filtro, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-27 08:42:22",
+    "measured": "1492.51",
+    "status": "D",
+    "observations": "Cambio de filtro, Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-27 12:42:22",
+    "measured": "1490.40",
+    "status": "C",
+    "observations": "Sin novedad, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-03-27 16:42:22",
+    "measured": "1488.18",
+    "status": "C",
+    "observations": "Cambio de filtro, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-27 20:42:22",
+    "measured": "1486.94",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-28 00:42:22",
+    "measured": "1502.93",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-28 04:42:22",
+    "measured": "1508.70",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-28 08:42:22",
+    "measured": "1505.47",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Consumo elevado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-28 12:42:22",
+    "measured": "1516.32",
+    "status": "D",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-03-28 16:42:22",
+    "measured": "1527.08",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-28 20:42:22",
+    "measured": "1524.15",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Mantenimiento programado, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-29 00:42:22",
+    "measured": "1520.11",
+    "status": "C",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-29 04:42:22",
+    "measured": "1529.78",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-29 08:42:22",
+    "measured": "1548.79",
+    "status": "D",
+    "observations": "Sin novedad, Alguna observaci\u00f3n, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-29 12:42:22",
+    "measured": "1546.38",
+    "status": "C",
+    "observations": "Nivel bajo, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-29 16:42:22",
+    "measured": "1552.62",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-29 20:42:22",
+    "measured": "1550.05",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-30 00:42:22",
+    "measured": "1556.27",
+    "status": "D",
+    "observations": "Mantenimiento programado, Sin novedad"
+  },
+  {
+    "read_date": "2023-03-30 04:42:22",
+    "measured": "1566.42",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-30 08:42:22",
+    "measured": "1563.37",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-30 12:42:22",
+    "measured": "1573.92",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-03-30 16:42:22",
+    "measured": "1588.11",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-30 20:42:22",
+    "measured": "1602.61",
+    "status": "D",
+    "observations": "Sin novedad, Nivel bajo, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-03-31 00:42:22",
+    "measured": "1600.83",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-31 04:42:22",
+    "measured": "1599.74",
+    "status": "C",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-03-31 08:42:22",
+    "measured": "1616.79",
+    "status": "D",
+    "observations": "Sin novedad, Consumo elevado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-03-31 12:42:22",
+    "measured": "1613.73",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-03-31 16:42:22",
+    "measured": "1612.26",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-03-31 20:42:22",
+    "measured": "1622.42",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-04-01 00:42:22",
+    "measured": "1636.63",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n, Mantenimiento programado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-01 04:42:22",
+    "measured": "1635.07",
+    "status": "C",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-04-01 08:42:22",
+    "measured": "1653.48",
+    "status": "D",
+    "observations": "Sin novedad, Nivel bajo, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-04-01 12:42:22",
+    "measured": "1652.04",
+    "status": "C",
+    "observations": "Sin novedad, Consumo elevado"
+  },
+  {
+    "read_date": "2023-04-01 16:42:22",
+    "measured": "1661.54",
+    "status": "D",
+    "observations": "Sin novedad, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-04-01 20:42:22",
+    "measured": "1659.78",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-04-02 00:42:22",
+    "measured": "1672.78",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad, Consumo elevado"
+  },
+  {
+    "read_date": "2023-04-02 04:42:22",
+    "measured": "1669.85",
+    "status": "C",
+    "observations": "Sin novedad, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-04-02 08:42:22",
+    "measured": "1675.38",
+    "status": "D",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-04-02 12:42:22",
+    "measured": "1688.72",
+    "status": "D",
+    "observations": "Mantenimiento programado, Revisi\u00f3n t\u00e9cnica, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-02 16:42:22",
+    "measured": "1703.40",
+    "status": "D",
+    "observations": "Sin novedad, Revisi\u00f3n t\u00e9cnica, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-04-02 20:42:22",
+    "measured": "1699.11",
+    "status": "C",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-04-03 00:42:22",
+    "measured": "1697.32",
+    "status": "C",
+    "observations": "Consumo elevado, Alguna observaci\u00f3n, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-03 04:42:22",
+    "measured": "1693.14",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Consumo elevado"
+  },
+  {
+    "read_date": "2023-04-03 08:42:22",
+    "measured": "1690.11",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-03 12:42:22",
+    "measured": "1701.89",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-03 16:42:22",
+    "measured": "1697.32",
+    "status": "C",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-04-03 20:42:22",
+    "measured": "1696.00",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-04-04 00:42:22",
+    "measured": "1691.23",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-04-04 04:42:22",
+    "measured": "1708.06",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n, Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-04 08:42:22",
+    "measured": "1703.76",
+    "status": "C",
+    "observations": "Consumo elevado, Alguna observaci\u00f3n, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-04-04 12:42:22",
+    "measured": "1701.85",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-04 16:42:22",
+    "measured": "1712.62",
+    "status": "D",
+    "observations": "Mantenimiento programado, Nivel bajo"
+  },
+  {
+    "read_date": "2023-04-04 20:42:22",
+    "measured": "1729.96",
+    "status": "D",
+    "observations": "Sin novedad, Consumo elevado, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-04-05 00:42:22",
+    "measured": "1726.78",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-05 04:42:22",
+    "measured": "1722.53",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-05 08:42:22",
+    "measured": "1729.32",
+    "status": "D",
+    "observations": "Mantenimiento programado, Nivel bajo, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-05 12:42:22",
+    "measured": "1726.05",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-05 16:42:22",
+    "measured": "1722.33",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-04-05 20:42:22",
+    "measured": "1717.93",
+    "status": "C",
+    "observations": "Cambio de filtro, Nivel bajo, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-04-06 00:42:22",
+    "measured": "1730.41",
+    "status": "D",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-06 04:42:22",
+    "measured": "1727.13",
+    "status": "C",
+    "observations": "Sin novedad"
+  },
+  {
+    "read_date": "2023-04-06 08:42:22",
+    "measured": "1723.49",
+    "status": "C",
+    "observations": "Consumo elevado, Mantenimiento programado, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-06 12:42:22",
+    "measured": "1719.21",
+    "status": "C",
+    "observations": "Consumo elevado, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-04-06 16:42:22",
+    "measured": "1730.43",
+    "status": "D",
+    "observations": "Consumo elevado"
+  },
+  {
+    "read_date": "2023-04-06 20:42:22",
+    "measured": "1726.43",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-04-07 00:42:22",
+    "measured": "1722.60",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua, Sin novedad, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-07 04:42:22",
+    "measured": "1718.04",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Nivel bajo"
+  },
+  {
+    "read_date": "2023-04-07 08:42:22",
+    "measured": "1715.14",
+    "status": "C",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-04-07 12:42:22",
+    "measured": "1726.60",
+    "status": "D",
+    "observations": "Consumo elevado, Mantenimiento programado"
+  },
+  {
+    "read_date": "2023-04-07 16:42:22",
+    "measured": "1723.55",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-07 20:42:22",
+    "measured": "1720.48",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Reposici\u00f3n de agua, Revisi\u00f3n t\u00e9cnica"
+  },
+  {
+    "read_date": "2023-04-08 00:42:22",
+    "measured": "1717.20",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Consumo elevado, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-08 04:42:22",
+    "measured": "1714.32",
+    "status": "C",
+    "observations": "Alguna observaci\u00f3n, Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-08 08:42:22",
+    "measured": "1711.71",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-08 12:42:22",
+    "measured": "1731.17",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-04-08 16:42:22",
+    "measured": "1744.80",
+    "status": "D",
+    "observations": "Sin novedad, Consumo elevado, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-08 20:42:22",
+    "measured": "1764.57",
+    "status": "D",
+    "observations": "Nivel bajo, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-09 00:42:22",
+    "measured": "1761.83",
+    "status": "C",
+    "observations": "Revisi\u00f3n t\u00e9cnica, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-09 04:42:22",
+    "measured": "1779.44",
+    "status": "D",
+    "observations": "Nivel bajo"
+  },
+  {
+    "read_date": "2023-04-09 08:42:22",
+    "measured": "1776.35",
+    "status": "C",
+    "observations": "Consumo elevado, Nivel bajo, Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-09 12:42:22",
+    "measured": "1771.92",
+    "status": "C",
+    "observations": "Consumo elevado, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-09 16:42:22",
+    "measured": "1790.21",
+    "status": "D",
+    "observations": "Consumo elevado, Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-04-09 20:42:22",
+    "measured": "1787.05",
+    "status": "C",
+    "observations": "Consumo elevado, Nivel bajo"
+  },
+  {
+    "read_date": "2023-04-10 00:42:22",
+    "measured": "1783.14",
+    "status": "C",
+    "observations": "Reposici\u00f3n de agua"
+  },
+  {
+    "read_date": "2023-04-10 04:42:22",
+    "measured": "1792.92",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Sin novedad"
+  },
+  {
+    "read_date": "2023-04-10 08:42:22",
+    "measured": "1804.71",
+    "status": "D",
+    "observations": "Alguna observaci\u00f3n"
+  },
+  {
+    "read_date": "2023-04-10 12:42:22",
+    "measured": "1800.42",
+    "status": "C",
+    "observations": "Cambio de filtro"
+  },
+  {
+    "read_date": "2023-04-10 16:42:22",
+    "measured": "1820.32",
+    "status": "D",
+    "observations": "Reposici\u00f3n de agua, Revisi\u00f3n t\u00e9cnica, Consumo elevado"
+  },
+  {
+    "read_date": "2023-04-10 20:42:22",
+    "measured": "1834.03",
+    "status": "D",
+    "observations": "Consumo elevado, Revisi\u00f3n t\u00e9cnica, Reposici\u00f3n de agua"
+  }
+]

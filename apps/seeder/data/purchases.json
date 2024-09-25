@@ -1,0 +1,155 @@
+[
+    {
+        "purchased_date": "2023-05-20 00:41:10",
+        "total": "1618.49",
+        "liters": "1774.44",
+        "active": "1",
+        "price": "0.91",
+        "observations": "",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2023-06-20 00:41:10",
+        "total": "1850.27",
+        "liters": "2514.77",
+        "active": "1",
+        "price": "0.74",
+        "observations": "Alguna observaci\u00f3n",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2023-07-20 00:41:10",
+        "total": "1123.24",
+        "liters": "1963.35",
+        "active": "1",
+        "price": "0.57",
+        "observations": "",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2023-08-20 00:41:10",
+        "total": "1545.00",
+        "liters": "2908.83",
+        "active": "1",
+        "price": "0.53",
+        "observations": "Mantenimiento preventivo",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2023-09-20 00:41:10",
+        "total": "1635.24",
+        "liters": "2675.10",
+        "active": "1",
+        "price": "0.61",
+        "observations": "",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2023-10-20 00:41:10",
+        "total": "1876.41",
+        "liters": "2573.53",
+        "active": "1",
+        "price": "0.73",
+        "observations": "Mantenimiento preventivo",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2023-11-20 00:41:10",
+        "total": "1296.35",
+        "liters": "1777.30",
+        "active": "1",
+        "price": "0.73",
+        "observations": "",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2023-12-20 00:41:10",
+        "total": "1591.38",
+        "liters": "2578.55",
+        "active": "1",
+        "price": "0.62",
+        "observations": "",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-01-20 00:41:10",
+        "total": "1804.64",
+        "liters": "2833.09",
+        "active": "1",
+        "price": "0.64",
+        "observations": "Alguna observaci\u00f3n",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-02-20 00:41:10",
+        "total": "1643.90",
+        "liters": "2151.15",
+        "active": "1",
+        "price": "0.76",
+        "observations": "Mantenimiento preventivo",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-03-20 00:41:10",
+        "total": "1441.26",
+        "liters": "2288.30",
+        "active": "1",
+        "price": "0.63",
+        "observations": "Mantenimiento preventivo",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-04-20 00:41:10",
+        "total": "1188.00",
+        "liters": "1834.63",
+        "active": "1",
+        "price": "0.65",
+        "observations": "Sin novedad",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-05-20 00:41:10",
+        "total": "1244.34",
+        "liters": "2956.56",
+        "active": "1",
+        "price": "0.42",
+        "observations": "Mantenimiento preventivo",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-06-20 00:41:10",
+        "total": "1472.45",
+        "liters": "2811.92",
+        "active": "1",
+        "price": "0.52",
+        "observations": "Mantenimiento preventivo",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-07-20 00:41:10",
+        "total": "1969.80",
+        "liters": "2034.12",
+        "active": "1",
+        "price": "0.97",
+        "observations": "Sin novedad",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-08-20 00:41:10",
+        "total": "1769.41",
+        "liters": "2394.11",
+        "active": "1",
+        "price": "0.74",
+        "observations": "",
+        "employee": 1
+    },
+    {
+        "purchased_date": "2024-09-20 00:41:10",
+        "total": "1174.80",
+        "liters": "1997.84",
+        "active": "1",
+        "price": "0.59",
+        "observations": "Alguna observaci\u00f3n",
+        "employee": 1
+    }
+]

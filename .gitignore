@@ -1,0 +1,42 @@
+# SECRETS
+# secret.json
+
+# byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# tests and coverage
+*.pytest_cache
+.coverage
+
+# database & logs
+*.db
+*.sqlite3
+*.log
+
+# migrations
+migrations/*
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+
+# venv
+.env
+env
+venv
+
+# other
+.DS_Store
+
+# javascript
+package-lock.json
+
+staticfiles/*
+!staticfiles/.gitkeep 
+.vscode/symbols.json
+.vscode/*
+
+secret.json
+data.json
+
+media/business/
