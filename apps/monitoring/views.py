@@ -32,7 +32,7 @@ class MonitoringView(viewsets.GenericViewSet):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        # serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
@@ -47,3 +47,9 @@ class MonitoringView(viewsets.GenericViewSet):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    @action(detail=False, methods=['get'])
+    def get_last(self, request):
+        queryset = self.get_queryset().last()
+        serializer = self.get_serializer(queryset)
+        return Response(serializer.data)

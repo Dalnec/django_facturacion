@@ -1,0 +1,26 @@
+name: Django CI
+
+on:
+  push:
+    branches:
+      - main # Ejecuta las acciones cuando haya un push en la rama 'main'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: download changes and build
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /home/tsi/facturacion/django_facturacion
+            git pull
+            source ../bin/activate
+            pip install -r requirements.txt
+            python manage.py makemigrations
+            python manage.py migrate
+            supervisorctl restart facturacion
