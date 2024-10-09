@@ -50,6 +50,6 @@ class MonitoringView(viewsets.GenericViewSet):
     
     @action(detail=False, methods=['get'])
     def get_last(self, request):
-        queryset = self.get_queryset().last()
+        queryset = self.get_queryset().order_by('pk').last()
         serializer = self.get_serializer(queryset)
         return Response(serializer.data)
