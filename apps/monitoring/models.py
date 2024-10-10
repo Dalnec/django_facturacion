@@ -12,7 +12,7 @@ class Monitoring(TimeStampedModel):
     
     read_date = models.DateTimeField("Fecha Lectura", blank=True, null=True)
     measured = models.DecimalField("Lectura Sensor", max_digits=18, decimal_places=2, blank=True, null=True)
-    percentage = models.DecimalField("Porcentaje", max_digits=18, decimal_places=2, blank=True, null=True)
+    percentage = models.CharField("Porcentaje", max_length=5, blank=True, null=True)
     status = models.CharField("Estado", max_length=1, choices=STATUS_CHOICES, default='C')
     observations = models.CharField('Observaciones', max_length=255, blank=True, null=True)
 
