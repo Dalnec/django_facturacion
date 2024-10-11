@@ -1,4 +1,3 @@
-import locale
 from django.db import models
 from model_utils.models import TimeStampedModel
 
@@ -29,5 +28,30 @@ class Invoice(TimeStampedModel):
     
     @property
     def period(self):
-        locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')
-        return self.read_date.strftime('%B %Y')
+        year = self.read_date.strftime('%Y')
+        month = self.read_date.strftime('%m')
+        if month == '01':
+            month = 'Enero'
+        elif month == '02':
+            month = 'Febrero'
+        elif month == '03':
+            month = 'Marzo'
+        elif month == '04':
+            month = 'Abril'
+        elif month == '05':
+            month = 'Mayo'
+        elif month == '06':
+            month = 'Junio'
+        elif month == '07':
+            month = 'Julio'
+        elif month == '08':
+            month = 'Agosto'
+        elif month == '09':
+            month = 'Septiembre'
+        elif month == '10':
+            month = 'Octubre'
+        elif month == '11':
+            month = 'Noviembre'
+        elif month == '12':
+            month = 'Diciembre'
+        return f"{year} - {month}"
