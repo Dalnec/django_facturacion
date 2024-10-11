@@ -29,5 +29,5 @@ class Invoice(TimeStampedModel):
     
     @property
     def period(self):
-        locale.setlocale(locale.LC_TIME, '')
+        locale.setlocale(locale.LC_TIME, 'es-BO.utf8')
         return self.read_date.strftime('%B %Y')
