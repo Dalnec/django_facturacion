@@ -1,3 +1,4 @@
+import locale
 from django.db import models
 from model_utils.models import TimeStampedModel
 
@@ -25,3 +26,8 @@ class Invoice(TimeStampedModel):
 
     def __str__(self):
         return f"{self.id} - {self.usuario} - {self.measured}"
+    
+    @property
+    def period(self):
+        locale.setlocale(locale.LC_TIME, '')
+        return self.read_date.strftime('%B %Y')
