@@ -54,4 +54,14 @@ class Invoice(TimeStampedModel):
             month = 'Noviembre'
         elif month == '12':
             month = 'Diciembre'
-        return f"{year} - {month}"
+        return f"{month} {year}"
+
+    def get_previous_measured(self):
+        # Obtener la factura anterior del mismo usuario, ordenada por read_date
+        previous_invoice = Invoice.objects.filter(
+            usuario=self.usuario,
+            read_date__lt=self.read_date  # Menor a la fecha de lectura actual
+        ).order_by('-read_date').first()
+
+        # Devolver la lectura anterior o 0 si no hay registros anteriores
+        return previous_invoice.measured if previous_invoice else 0
