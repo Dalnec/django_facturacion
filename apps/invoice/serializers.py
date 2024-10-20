@@ -8,10 +8,11 @@ class TicketHeaderSerializer(serializers.ModelSerializer):
     medidor = serializers.SerializerMethodField(read_only=True)
     full_name = serializers.SerializerMethodField(read_only=True)
     address = serializers.CharField(source='usuario.address', read_only=True)
+    number = serializers.CharField(source='id', read_only=True)
 
     class Meta:
         model = Invoice
-        fields = ('id', 'emission_date', 'medidor', 'full_name', 'address')
+        fields = ('number', 'emission_date', 'medidor', 'full_name', 'address')
 
     def get_emission_date(self, obj):
         return obj.read_date.strftime('%d/%m/%Y')
