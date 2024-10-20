@@ -65,3 +65,10 @@ class Invoice(TimeStampedModel):
 
         # Devolver la lectura anterior o 0 si no hay registros anteriores
         return previous_invoice.measured if previous_invoice else 0
+
+    def get_previous_month(self):
+        previous_invoice = Invoice.objects.filter(
+            usuario=self.usuario,
+            read_date__lt=self.read_date
+        ).order_by('-read_date').first()
+        return previous_invoice.period if previous_invoice else ''

@@ -11,7 +11,7 @@ class TicketHeaderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Invoice
-        fields = ('emission_date', 'medidor', 'full_name', 'address')
+        fields = ('id', 'emission_date', 'medidor', 'full_name', 'address')
 
     def get_emission_date(self, obj):
         return obj.read_date.strftime('%d/%m/%Y')
@@ -25,10 +25,19 @@ class TicketHeaderSerializer(serializers.ModelSerializer):
 class TicketBodySerializer(serializers.ModelSerializer):
     previous_reading = serializers.SerializerMethodField(read_only=True)
     actual_reading = serializers.CharField(source='measured', read_only=True)
+    previous_month = serializers.SerializerMethodField(read_only=True)
+    actual_month = serializers.SerializerMethodField(source='measured', read_only=True)
     consumed = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Invoice
-        fields = ('previous_reading', 'actual_reading', 'price', 'total', 'consumed')
+        fields = ('previous_reading', 'actual_reading', 'price', 'total', 
+            'previous_month', 'actual_month', 'consumed')
+
+    def get_previous_month(self, obj):
+        return obj.get_previous_month()
+
+    def get_actual_month(self, obj):
+        return obj.period
 
     def get_previous_reading(self, obj):
         return str(obj.get_previous_measured())
