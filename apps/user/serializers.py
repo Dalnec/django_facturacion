@@ -35,7 +35,7 @@ class LoginSerializer(serializers.Serializer):
 
 class UsuarioUserSerializer(serializers.ModelSerializer):
     user_id = serializers.ReadOnlyField(source="id")
-    # usuario = UsuarioSerializer(source="fk_usuario_user")
+    usuario_id = UsuarioSerializer(source="fk_usuario_user.id")
     names = serializers.ReadOnlyField(source="fk_usuario_user.names")
     lastnames = serializers.ReadOnlyField(source="fk_usuario_user.lastnames")
     status = serializers.ReadOnlyField(source="fk_usuario_user.status")
@@ -46,6 +46,7 @@ class UsuarioUserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             "user_id",
+            "usuario_id",
             "username",
             "is_staff",
             "is_active",
