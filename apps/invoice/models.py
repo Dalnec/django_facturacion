@@ -71,4 +71,4 @@ class Invoice(TimeStampedModel):
             usuario=self.usuario,
             read_date__lt=self.read_date
         ).order_by('-read_date').first()
-        return previous_invoice.period if previous_invoice else ''
+        return previous_invoice.period if previous_invoice else '-'

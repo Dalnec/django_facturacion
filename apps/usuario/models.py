@@ -1,3 +1,5 @@
+import datetime
+from django.utils import timezone
 from django.db import models
 from model_utils.models import TimeStampedModel
 
@@ -41,3 +43,17 @@ class Usuario(TimeStampedModel):
     @property
     def hasDebt(self):
         return self.fk_invoice_usuario.filter(status='D').exists()
+
+    @property
+    def makeInvoice(self):
+        invoices = self.fk_invoice_usuario
+        if not invoices.exists():
+            return True
+        last_invoice = invoices.first()
+        # validar que la factura solo se realice una vez por mes y sea consecutivo
+        now = timezone.now()
+        # TODO: validar 20 dias por configuracion
+        if last_invoice.read_date.month != now.month and last_invoice.read_date <= now - datetime.timedelta(days=20):
+            return True
+        else:
+            return False
