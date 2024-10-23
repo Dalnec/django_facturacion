@@ -53,3 +53,11 @@ class UsuarioView(viewsets.GenericViewSet):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    @action(detail=True, methods=['get'])
+    def change_password(self, request, pk=None):
+        instance = self.get_object()
+        user = instance.user
+        user.set_password(request.data['password'])
+        user.save()
+        return Response(status=status.HTTP_201_CREATED)
