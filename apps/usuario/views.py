@@ -54,7 +54,7 @@ class UsuarioView(viewsets.GenericViewSet):
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-    @action(detail=True, methods=['get'])
+    @action(detail=True, methods=['PUT'])
     def change_password(self, request, pk=None):
         instance = self.get_object()
         user = instance.user
