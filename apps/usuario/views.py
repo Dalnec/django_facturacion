@@ -58,6 +58,9 @@ class UsuarioView(viewsets.GenericViewSet):
     def change_password(self, request, pk=None):
         instance = self.get_object()
         user = instance.user
-        user.set_password(request.data['password'])
+        new_password = request.data.get(['password'], None)
+        if not new_password:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        user.set_password(new_password)
         user.save()
         return Response(status=status.HTTP_201_CREATED)
