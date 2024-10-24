@@ -13,7 +13,7 @@ class Purchase(TimeStampedModel):
         db_table = 'Purchase'
         verbose_name = 'Compra'
         verbose_name_plural = 'Compras'
-        ordering = ['-id']
+        # ordering = ['-id']
 
     def __str__(self):
         return f'{self.id} {self.total}'

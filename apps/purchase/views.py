@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import *
@@ -10,9 +11,10 @@ from .filters import *
 class PurchaseView(viewsets.GenericViewSet):
     serializer_class = PurchaseSerializer
     queryset = Purchase.objects.all()
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = PurchaseFilter
     pagination_class = PurchasePagination
+    ordering_fields = ['id', 'purchased_date']
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
