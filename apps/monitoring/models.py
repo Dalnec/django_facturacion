@@ -18,7 +18,7 @@ class Monitoring(TimeStampedModel):
 
     class Meta:
         db_table = 'Monitoring'
-        ordering = ['-id']
+        # ordering = ['-id']
 
     def __str__(self):
         return f"{self.id} - {self.measured}"

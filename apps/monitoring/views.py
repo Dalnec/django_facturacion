@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import *
@@ -10,9 +11,10 @@ from .filters import *
 class MonitoringView(viewsets.GenericViewSet):
     serializer_class = MonitoringSerializer
     queryset = Monitoring.objects.all()
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = MonitoringFilter
     pagination_class = MonitoringPagination
+    ordering_fields = ['id', 'read_date']
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
@@ -53,3 +55,9 @@ class MonitoringView(viewsets.GenericViewSet):
         queryset = self.get_queryset().order_by('pk').last()
         serializer = self.get_serializer(queryset)
         return Response(serializer.data)
+    
+    @action(detail=False, methods=['get'])
+    def get_monitorings(self, request):
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)

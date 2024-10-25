@@ -4,6 +4,7 @@ from .models import *
 
 
 class MonitoringFilter(django_filters.FilterSet):
+    read_date_range = django_filters.DateTimeFromToRangeFilter(field_name='read_date')
 
     class Meta:
         model = Monitoring
