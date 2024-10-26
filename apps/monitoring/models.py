@@ -1,5 +1,5 @@
 import datetime
-
+from django.utils import timezone
 from django.db import models
 from model_utils.models import TimeStampedModel
 
@@ -23,16 +23,11 @@ class Monitoring(TimeStampedModel):
     def __str__(self):
         return f"{self.id} - {self.measured}"
     
-    # @property
-    # def is_connected(self):
-    #     if self.read_date >= datetime.datetime.now() - datetime.timedelta(minutes=5):
-    #         return True
-    #     return False
     @property
     def is_connected(self):
         now = datetime.datetime.now()
         read_date_naive = self.read_date.replace(tzinfo=None) if self.read_date.tzinfo else self.read_date
-
+        # read_date_naive = self.read_date if not timezone.is_aware(self.read_date) else timezone.make_naive(self.read_date, datetime.timezone.utc)
         if read_date_naive >= now - datetime.timedelta(minutes=5):
             return True
         return False
