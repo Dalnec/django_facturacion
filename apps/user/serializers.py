@@ -23,6 +23,9 @@ class UserSerializer(serializers.ModelSerializer):
 
         
 class EmployeeSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source="user.username")
+    profile = serializers.ReadOnlyField(source="user.profile.id")
+    profile_description = serializers.ReadOnlyField(source="user.profile.description")
     class Meta:
         model = Employee
         fields = '__all__'

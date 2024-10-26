@@ -60,6 +60,7 @@ class Employee(TimeStampedModel):
     address = models.CharField('Direccion', max_length=150, blank=True, null=True)
     status = models.CharField("Estado", max_length=1, choices=STATUS_CHOICES, default='A')
     user = models.OneToOneField(User, on_delete=models.SET_NULL, related_name="fk_employee_user", null=True, blank=True)
+    employee = models.ForeignKey( "user.Employee", on_delete=models.SET_NULL, related_name="fk_employee_employee", null=True, blank=True) 
 
     def save(self, **kwargs):
         self.names = self.names.upper()

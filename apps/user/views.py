@@ -172,3 +172,14 @@ class EmployeeView(viewsets.GenericViewSet):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    @action(detail=True, methods=['PUT'])
+    def change_password(self, request, pk=None):
+        instance = self.get_object()
+        user = instance.user
+        new_password = request.data.get('password', None)
+        if not new_password:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        user.set_password(new_password)
+        user.save()
+        return Response(status=status.HTTP_201_CREATED)
