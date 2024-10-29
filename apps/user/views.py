@@ -101,7 +101,9 @@ class UserView(viewsets.GenericViewSet):
         token = Token.objects.filter(user=request.user.id)
         if not token.exists():
             return Response(status=status.HTTP_401_UNAUTHORIZED)
-        serializer = EmployeeUserSerializer(token.first().user)
+
+        token = token.first()
+        serializer = EmployeeUserSerializer(token.user)
         return Response({
             'token': token.key,
             "user": serializer.data,
