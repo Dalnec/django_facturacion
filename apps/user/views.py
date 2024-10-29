@@ -95,6 +95,18 @@ class UserView(viewsets.GenericViewSet):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    @action(detail=False, methods=['get'])
+    def auth_check(self, request):
+        token = Token.objects.filter(user=request.user.id)
+        if not token.exists():
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        serializer = EmployeeUserSerializer(token.first().user)
+        return Response({
+            'token': token.key,
+            "user": serializer.data,
+            "message": "Sesion Iniciada",
+        }, status=status.HTTP_200_OK)
 
 
 class Login(ObtainAuthToken):
