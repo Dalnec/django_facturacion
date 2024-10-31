@@ -49,3 +49,10 @@ class InvoiceView(viewsets.GenericViewSet):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['put'])
+    def change_status(self, request, pk=None):
+        instance = self.get_object()
+        instance.status = request.data.get('status', None)
+        instance.save()
+        return Response(status=status.HTTP_200_OK)
