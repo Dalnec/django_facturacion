@@ -197,3 +197,10 @@ class EmployeeView(viewsets.GenericViewSet):
         user.set_password(new_password)
         user.save()
         return Response(status=status.HTTP_201_CREATED)
+    
+    @action(detail=True, methods=['put'])
+    def change_status(self, request, pk=None):
+        instance = self.get_object()
+        instance.status = request.data.get('status', None)
+        instance.save()
+        return Response(status=status.HTTP_200_OK)
