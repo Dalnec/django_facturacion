@@ -1,6 +1,7 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.authtoken.models import Token
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db import transaction
 
@@ -64,3 +65,13 @@ class UsuarioView(viewsets.GenericViewSet):
         user.set_password(new_password)
         user.save()
         return Response(status=status.HTTP_201_CREATED)
+    
+    @action(detail=True, methods=['put'])
+    def change_status(self, request, pk=None):
+        instance = self.get_object()
+        instance.status = request.data.get('status', None)
+        user_session = Token.objects.filter(user=instance.user.id)
+        if user_session.exists():
+            user_session.delete()
+        instance.save()
+        return Response(status=status.HTTP_200_OK)

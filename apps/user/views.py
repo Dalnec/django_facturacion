@@ -119,8 +119,12 @@ class Login(ObtainAuthToken):
         user = authenticate(username=username, password=password)
         if user:
             if hasattr(user, 'fk_usuario_user'):
+                if user.fk_usuario_user.status == 'I':
+                    return Response({'error': 'Comuniquese con el administrador'}, status=status.HTTP_400_BAD_REQUEST)
                 serializer = UsuarioUserSerializer(user)
             else:
+                if user.fk_employee_user.status == 'I':
+                    return Response({'error': 'Comuniquese con el administrador'}, status=status.HTTP_400_BAD_REQUEST)
                 serializer = EmployeeUserSerializer(user)
             token, created = Token.objects.get_or_create(user=user)
             return Response({
@@ -202,5 +206,8 @@ class EmployeeView(viewsets.GenericViewSet):
     def change_status(self, request, pk=None):
         instance = self.get_object()
         instance.status = request.data.get('status', None)
+        user_session = Token.objects.filter(user=instance.user.id)
+        if user_session.exists():
+            user_session.delete()
         instance.save()
         return Response(status=status.HTTP_200_OK)
