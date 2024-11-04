@@ -7,7 +7,7 @@ class Distric(TimeStampedModel):
     representative = models.CharField("Representante", max_length=150)
     phone = models.CharField("Celular", max_length=100, blank=True, null=True)
     email = models.EmailField( "Correo", max_length=100, blank=True, null=True, unique=False )
-    # accounts = models.JSONField("Cuentas Bancarias", blank=True, null=True)
+    settings = models.JSONField("Configuraciones", blank=True, null=True)
 
     class Meta:
         ordering = ("id",)
