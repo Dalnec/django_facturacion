@@ -13,8 +13,8 @@ class MonitoringSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_isConnected(self, obj):
-        if obj["percentage"]:
-            return False
+        # if obj["percentage"]:
+            # return False
         return obj.is_connected
 
     def get_interval_time_device(self, obj):

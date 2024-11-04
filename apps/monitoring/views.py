@@ -32,11 +32,11 @@ class MonitoringView(viewsets.GenericViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
-        print(request.data)
+        # print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        # serializer.save()
-        print(serializer.data)
+        serializer.save()
+        # print(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
