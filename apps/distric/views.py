@@ -47,3 +47,18 @@ class DistricView(viewsets.GenericViewSet):
         instance = self.get_object()
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    @action(detail=True, methods=['get'], serializer_class=SettingsSerializer)
+    def get_settings(self, request, pk=None):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance.settings)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    @action(detail=True, methods=['put'], serializer_class=SettingsSerializer)
+    def update_settings(self, request, pk=None):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance.settings, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        instance.settings = serializer.validated_data
+        instance.save()
+        return Response({**instance.settings},status=status.HTTP_200_OK)
