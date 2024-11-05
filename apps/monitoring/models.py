@@ -2,6 +2,7 @@ import datetime
 from django.utils import timezone
 from django.db import models
 from model_utils.models import TimeStampedModel
+from apps.distric.models import Distric
 
 class Monitoring(TimeStampedModel):
 
@@ -26,9 +27,13 @@ class Monitoring(TimeStampedModel):
     
     @property
     def is_connected(self):
+        distric = Distric.objects.get(pk=1)
+        interval = 10
+        if distric.settings["interval_time_device"]:
+            interval = distric.settings["interval_time_device"] / 60000
         now = datetime.datetime.now()
         read_date_naive = self.read_date.replace(tzinfo=None) if self.read_date.tzinfo else self.read_date
         # read_date_naive = self.read_date if not timezone.is_aware(self.read_date) else timezone.make_naive(self.read_date, datetime.timezone.utc)
-        if read_date_naive >= now - datetime.timedelta(minutes=5):
+        if read_date_naive >= now - datetime.timedelta(minutes=interval):
             return True
         return False
