@@ -4,6 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
+from apps.purchase.models import Purchase
+
 from .models import *
 from .serializers import *
 from .filters import *
@@ -32,7 +34,16 @@ class InvoiceView(viewsets.GenericViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        data = request.data.copy()
+        purchase = Purchase.objects.all().order_by('id').last()
+        last_measured = Invoice.objects.filter(usuario=data['usuario']).order_by('id').last()
+        measured = float(data['measured']) - float(last_measured.measured)
+        # TODO: Calcular el total y validar el valor limite del medidor
+        if (measured <= 0):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        data['price'] = purchase.price
+        data['total'] = f"{measured * float(purchase.price)}"
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

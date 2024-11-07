@@ -49,6 +49,9 @@ class TicketBodySerializer(serializers.ModelSerializer):
 class InvoiceSerializer(serializers.ModelSerializer):
     period = serializers.SerializerMethodField()
     ticket = serializers.SerializerMethodField()
+    employeeName = serializers.SerializerMethodField()
+    previosMeasured = serializers.SerializerMethodField()
+
     class Meta:
         model = Invoice
         fields = '__all__'
@@ -67,3 +70,9 @@ class InvoiceSerializer(serializers.ModelSerializer):
             'header': header,
             'body': body
         })
+
+    def get_employeeName(self, obj):
+        return obj.employee.names
+    
+    def get_previosMeasured(self, obj):
+        return obj.get_previous_measured()
