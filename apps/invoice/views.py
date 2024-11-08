@@ -51,7 +51,7 @@ class InvoiceView(viewsets.GenericViewSet):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         data = request.data.copy()
-        measured = float(data['measured']) - float(data['last_measured'])
+        measured = float(data['measured']) - float(data['previosMeasured'])
         if (measured <= 0):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         instance = self.get_object()
