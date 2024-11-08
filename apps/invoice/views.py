@@ -50,6 +50,10 @@ class InvoiceView(viewsets.GenericViewSet):
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
+        data = request.data.copy()
+        measured = float(data['measured'])
+        if (measured <= 0):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
