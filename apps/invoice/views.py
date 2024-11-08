@@ -42,7 +42,7 @@ class InvoiceView(viewsets.GenericViewSet):
         if (measured <= 0):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         data['price'] = purchase.price
-        data['total'] = f"{measured * float(purchase.price)}"
+        data['total'] = f"{round(measured * float(purchase.price), 2)}"
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
