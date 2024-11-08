@@ -75,4 +75,4 @@ class InvoiceSerializer(serializers.ModelSerializer):
         return obj.employee.names
     
     def get_previosMeasured(self, obj):
-        return obj.get_previous_measured()
+        return f"{obj.get_previous_measured()}"
