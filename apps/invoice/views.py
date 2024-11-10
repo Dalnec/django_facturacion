@@ -143,5 +143,7 @@ class InvoiceTicketView(RetrieveAPIView):
         # Prepara la respuesta HTTP con el PDF
         pdf_file.seek(0)
         response = HttpResponse(pdf_file, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="Recibo_{ticket['body']['actual_month']}_{ticket['header']['full_name']}.pdf"'
+        response['Content-Disposition'] = f'attachment; filename="Recibo_{ticket["body"]["actual_month"]}_{ticket["header"]["full_name"]}.pdf"'
+
+
         return response
