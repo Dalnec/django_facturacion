@@ -18,7 +18,7 @@ class TicketHeaderSerializer(serializers.ModelSerializer):
         return obj.read_date.strftime('%d/%m/%Y')
     
     def get_medidor(self, obj):
-        return 'E365498'
+        return obj.usuario.code or ""
     
     def get_full_name(self, obj):
         return obj.usuario.full_name

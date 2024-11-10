@@ -1,10 +1,16 @@
 from rest_framework import viewsets, status
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-
+from rest_framework.renderers import TemplateHTMLRenderer
 from apps.purchase.models import Purchase
+
+from django.http import HttpResponse
+from django.template.loader import get_template
+from io import BytesIO
+from xhtml2pdf import pisa
 
 from .models import *
 from .serializers import *
@@ -71,3 +77,71 @@ class InvoiceView(viewsets.GenericViewSet):
         instance.status = request.data.get('status', None)
         instance.save()
         return Response(status=status.HTTP_200_OK)
+    
+
+    @action(detail=True, methods=['GET'], renderer_classes=[TemplateHTMLRenderer])
+    def ticket(self, request, pk=None, format=None, *args, **kwargs):
+        invoice = self.get_object()
+        data = self.serializer_class(invoice).data
+        ticket = json.loads(data['ticket'])
+        data = {
+            'header': ticket['header'],
+            'body': ticket['body'],
+        }
+        return Response(data, template_name='./ticket.html', status=status.HTTP_200_OK)
+
+
+class InvoiceTicketView(RetrieveAPIView):
+    queryset = Invoice.objects.all()
+    serializer_class = InvoiceSerializer
+    lookup_field = 'uuid'
+
+    def retrieve(self, request, uuid=None, *args, **kwargs):
+        import io
+        from django.template.loader import render_to_string
+        from datetime import datetime
+
+        invoice = self.get_object()
+        data = self.serializer_class(invoice).data
+        ticket = json.loads(data['ticket'])
+        data = {
+            'header': ticket['header'],
+            'body': ticket['body'],
+        }
+
+        # Renderiza la plantilla HTML con los datos de la factura
+        html = render_to_string('ticket.html', data)
+
+        # Crea un objeto de bytes
+        pdf_file = io.BytesIO()
+        # Define el tamaño de la página en puntos (1 mm ≈ 2.83465 puntos)
+        # 80 mm de ancho ≈ 227 puntos y un alto que puedes ajustar según el contenido.
+        page_width = 227  # 80 mm en puntos
+        page_height = 300
+
+        # CSS para ajustar el tamaño de la página en el PDF
+        custom_css = f"""
+        @page {{
+            size: {page_width}pt {page_height}pt;
+            margin: 5;
+        }}
+        body {{
+            width: {page_width}pt;
+            font-size: 15px;
+            margin: 0;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }}
+        """
+
+        # Combina el CSS personalizado con el HTML
+        full_html = f"<style>{custom_css}</style>{html}"
+
+        # Convierte el HTML a PDF usando xhtml2pdf
+        pisa.CreatePDF(io.BytesIO(full_html.encode("UTF-8")), dest=pdf_file)
+
+        # Prepara la respuesta HTTP con el PDF
+        pdf_file.seek(0)
+        response = HttpResponse(pdf_file, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="Recibo_{ticket['body']['actual_month']}_{ticket['header']['full_name']}.pdf"'
+        return response

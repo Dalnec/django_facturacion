@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from model_utils.models import TimeStampedModel
 
@@ -7,7 +8,7 @@ class Invoice(TimeStampedModel):
         ('D', 'DEUDA'),
         ('P', 'PAGADO'),
     )
-    
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False, null=True)
     employee = models.ForeignKey('user.Employee', related_name='fk_invoice_employee', on_delete=models.CASCADE)
     usuario = models.ForeignKey('usuario.Usuario', related_name='fk_invoice_usuario', on_delete=models.CASCADE)
     read_date = models.DateTimeField("Fecha Lectura", blank=True, null=True)

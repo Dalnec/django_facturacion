@@ -26,6 +26,8 @@ class Usuario(TimeStampedModel):
     status = models.CharField("Estado", max_length=1, choices=STATUS_CHOICES, default='A')
     user = models.OneToOneField( "user.User", on_delete=models.SET_NULL, related_name="fk_usuario_user", null=True, blank=True ) 
     employee = models.ForeignKey( "user.Employee", on_delete=models.SET_NULL, related_name="fk_usuario_employee", null=True, blank=True) 
+    code = models.CharField("Codigo Medidor", max_length=10, blank=True, null=True)
+    last_measured = models.DecimalField("Ultima Lectura Medidor", max_digits=18, decimal_places=2, blank=True, null=True)
 
     class Meta:
         ordering = ("-id",)
