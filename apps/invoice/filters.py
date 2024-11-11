@@ -5,10 +5,11 @@ from .models import *
 
 class InvoiceFilter(django_filters.FilterSet):
     year = django_filters.NumberFilter(field_name='read_date', lookup_expr='year')
+    month = django_filters.NumberFilter(field_name='read_date', lookup_expr='month')
 
     class Meta:
         model = Invoice
-        fields = [ "employee", "usuario", "status", "year", ]
+        fields = [ "employee", "usuario", "status", "year", "month"]
 
 class InvoicePagination(PageNumberPagination):
     page_size_query_param = "page_size"

@@ -66,3 +66,7 @@ class Usuario(TimeStampedModel):
             return True
         else:
             return False
+    
+    @property
+    def status_description(self):
+        return dict(self.STATUS_CHOICES)[self.status]

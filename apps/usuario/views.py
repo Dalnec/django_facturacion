@@ -3,12 +3,18 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.authtoken.models import Token
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.renderers import TemplateHTMLRenderer
 from django.db import transaction
 
 from apps.user.serializers import UserSerializer
 from .models import *
 from .serializers import *
 from .filters import *
+
+import io
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
+from django.http import HttpResponse
 
 class UsuarioView(viewsets.GenericViewSet):
     serializer_class = UsuarioSerializer
@@ -75,3 +81,23 @@ class UsuarioView(viewsets.GenericViewSet):
             user_session.delete()
         instance.save()
         return Response(status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['GET'], renderer_classes=[TemplateHTMLRenderer])
+    def report(self, request, *args, **kwargs):
+        params = request.query_params.dict()
+
+        queryset = self.filter_queryset(self.get_queryset().order_by('id'))
+        data = {
+            "usuarios": queryset,
+            "counter": 0,
+            "params": params,
+        }
+        # return Response(data, template_name='./lista_usuarios.html', status=status.HTTP_200_OK)
+       
+        html = render_to_string('lista_usuarios.html', data)
+        pdf_file = io.BytesIO()
+        pisa.CreatePDF(io.BytesIO(html.encode("UTF-8")), dest=pdf_file)
+        pdf_file.seek(0)
+        response = HttpResponse(pdf_file, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="Reporte_de_usuarios.pdf"'
+        return response

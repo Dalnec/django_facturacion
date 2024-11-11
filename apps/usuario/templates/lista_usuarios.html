@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ticket</title>
+    <style>
+      body{
+        font-family: Arial, sans-serif;
+        padding: 0 0;
+        margin: 0 0;
+        font-size: 11px;
+      }
+      tr {
+        border-bottom: 1px solid #ddd;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div style="text-align: center; margin: 2px 0; font-size: 14px; font-weight: bold;">
+      <span>LISTA DE USUARIOS {{ header.number }}</span>
+    </div>
+
+    <table style="border-collapse: collapse; padding: 0; margin: 0; width: 100%; justify-content: center;  align-items: center;">
+      <thead>
+        <tr style="padding: 3px 0 0 0;">
+          <th style="background-color: #ace1fc; width: 40px"></th>
+          <th style="background-color: #ace1fc; width: 65px">F. Registro</th>
+          <th style="background-color: #ace1fc; width: 90px">Cod. Medidor</th>
+          <th style="background-color: #ace1fc; width: 180px">Usuario</th>
+          <th style="background-color: #ace1fc; width: 50px">Telefono</th>
+          <th style="background-color: #ace1fc; width: 180px">Direccion</th>
+          <th style="background-color: #ace1fc; width: 100px">Familia</th>
+          <th style="background-color: #ace1fc; width: 65px">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ forloop.counter }}
+        </td>
+        <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ usuario.created|date:'Y-m-d h:m:s' }}
+        </td>
+        <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+          {{ usuario.code|default_if_none:"-" }}
+        </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ usuario.ci }} <br>
+            {{ usuario.full_name }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ usuario.phone }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ usuario.address }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ usuario.family }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ usuario.status_description }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

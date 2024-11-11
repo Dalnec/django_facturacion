@@ -9,7 +9,9 @@ from apps.purchase.models import Purchase
 
 from django.http import HttpResponse
 from django.template.loader import get_template
-from io import BytesIO
+# from io import BytesIO
+import io
+from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
 from .models import *
@@ -89,6 +91,29 @@ class InvoiceView(viewsets.GenericViewSet):
             'body': ticket['body'],
         }
         return Response(data, template_name='./ticket.html', status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['GET'], renderer_classes=[TemplateHTMLRenderer])
+    def status_report(self, request, *args, **kwargs):
+        # params = request.GET.dict()
+        params = request.query_params.dict()
+        # print(.get('month', None))
+
+        queryset = self.filter_queryset(self.get_queryset().order_by('-id'))
+        data = {
+            "invoices": queryset,
+            "counter": 0,
+            "params": params,
+        }
+        # return Response(data, template_name='./invoices.html', status=status.HTTP_200_OK)
+       
+        html = render_to_string('invoices.html', data)
+        pdf_file = io.BytesIO()
+        pisa.CreatePDF(io.BytesIO(html.encode("UTF-8")), dest=pdf_file)
+        pdf_file.seek(0)
+        response = HttpResponse(pdf_file, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="Reporte_de_facturas.pdf"'
+        return response
+
 
 
 class InvoiceTicketView(RetrieveAPIView):
@@ -97,10 +122,6 @@ class InvoiceTicketView(RetrieveAPIView):
     lookup_field = 'uuid'
 
     def retrieve(self, request, uuid=None, *args, **kwargs):
-        import io
-        from django.template.loader import render_to_string
-        from datetime import datetime
-
         invoice = self.get_object()
         data = self.serializer_class(invoice).data
         ticket = json.loads(data['ticket'])
@@ -144,6 +165,4 @@ class InvoiceTicketView(RetrieveAPIView):
         pdf_file.seek(0)
         response = HttpResponse(pdf_file, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="Recibo_{ticket["body"]["actual_month"]}_{ticket["header"]["full_name"]}.pdf"'
-
-
         return response

@@ -70,3 +70,11 @@ class Invoice(TimeStampedModel):
             read_date__lt=self.read_date
         ).order_by('-read_date').first()
         return previous_invoice.period if previous_invoice else '-'
+    
+    @property
+    def measured_diff(self):
+        return round(float(self.measured) - float(self.get_previous_measured()), 2)
+
+    @property
+    def status_description(self):
+        return dict(self.STATUS_CHOICES)[self.status]

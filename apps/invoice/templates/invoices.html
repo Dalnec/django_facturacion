@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ticket</title>
+    <style>
+      body{
+        font-family: Arial, sans-serif;
+        padding: 0 0;
+        margin: 0 0;
+        font-size: 11px;
+      }
+      tr {
+        border-bottom: 1px solid #ddd;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div style="text-align: center; margin: 2px 0; font-size: 14px; font-weight: bold;">
+      <span>LISTA DE RECIBOS {{ header.number }}</span>
+    </div>
+
+    <table style="border-collapse: collapse; padding: 0; margin: 0; width: 100%; justify-content: center;  align-items: center;">
+      <thead>
+        <tr style="padding: 3px 0 0 0;">
+          <th style="background-color: #ace1fc; width: 45px"></th>
+          <th style="background-color: #ace1fc; width: 55px">N° Recibo</th>
+          <th style="background-color: #ace1fc; width: 85px">Fecha Lectura</th>
+          <th style="background-color: #ace1fc; width: 85px">Periodo</th>
+          <th style="background-color: #ace1fc; width: 160px">Usuario</th>
+          <th style="background-color: #ace1fc; width: 60px">Telefono</th>
+          <th style="background-color: #ace1fc; width: 65px">Consumido</th>
+          <th style="background-color: #ace1fc; width: 55px">Tarifa</th>
+          <th style="background-color: #ace1fc; width: 70px">Total</th>
+          <th style="background-color: #ace1fc; width: 70px">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for invoice in invoices %}
+        <tr>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ forloop.counter }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.id }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.read_date|date:'Y-m-d h:m:s' }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.period }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.usuario.ci }} <br>
+            {{ invoice.usuario.full_name }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.usuario.phone }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.measured_diff }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.price }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.total }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.status_description }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
