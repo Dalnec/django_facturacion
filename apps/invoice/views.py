@@ -14,6 +14,8 @@ import io
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
+from apps.usuario.models import Usuario
+
 from .models import *
 from .serializers import *
 from .filters import *
@@ -44,8 +46,16 @@ class InvoiceView(viewsets.GenericViewSet):
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
         purchase = Purchase.objects.all().order_by('id').last()
-        last_measured = Invoice.objects.filter(usuario=data['usuario']).order_by('id').last()
-        measured = float(data['measured']) - float(last_measured.measured)
+        invoices = Invoice.objects.filter(usuario=data['usuario']).order_by('id')
+        last_measured = 0
+        if not invoices.exists():
+            usuario = Usuario.objects.get(id=data['usuario'])
+            if not usuario.last_measured:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+            last_measured = usuario.last_measured
+        else:
+            last_measured = invoices.last().measured
+        measured = float(data['measured']) - float(last_measured)
         # TODO: Calcular el total y validar el valor limite del medidor
         if (measured <= 0):
             return Response(status=status.HTTP_400_BAD_REQUEST)
