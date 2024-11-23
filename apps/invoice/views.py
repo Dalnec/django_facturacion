@@ -9,6 +9,7 @@ from apps.purchase.models import Purchase
 
 from django.http import HttpResponse
 from django.template.loader import get_template
+from django.db import transaction
 from django.db.models import Sum
 # from io import BytesIO
 import io
@@ -16,7 +17,7 @@ from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
 from apps.usuario.models import Usuario
-
+from decimal import Decimal
 from .models import *
 from .serializers import *
 from .filters import *
@@ -45,79 +46,83 @@ class InvoiceView(viewsets.GenericViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
-        data = request.data.copy()
-        purchase = Purchase.objects.all().order_by('id').last()
-        invoices = Invoice.objects.filter(usuario=data['usuario']).order_by('id')
-        usuario = Usuario.objects.get(id=data['usuario'])
-        measured = 0
-        last_measured = 0
+        with transaction.atomic():
+            data = request.data.copy()
+            purchase = Purchase.objects.all().order_by('id').last()
+            invoices = Invoice.objects.filter(usuario=data['usuario']).order_by('id')
+            usuario = Usuario.objects.get(id=data['usuario'])
+            measured = 0
+            last_measured = 0
 
-        if not invoices.exists():
-            if not usuario.last_measured:
+            if not invoices.exists():
+                if not usuario.last_measured:
+                    return Response(status=status.HTTP_400_BAD_REQUEST)
+                last_measured = usuario.last_measured
+            else:
+                last_measured = invoices.last().measured
+
+            if usuario.restart:
+                measured = float(data['measured'])
+                usuario.restart = False
+                usuario.save()
+            else:
+                measured = float(data['measured']) - float(last_measured)
+            if (measured < 0):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
-            last_measured = usuario.last_measured
-        else:
-            last_measured = invoices.last().measured
 
-        if usuario.restart:
-            measured = float(data['measured'])
-            usuario.restart = False
-            usuario.save()
-        else:
-            measured = float(data['measured']) - float(last_measured)
-        if (measured < 0):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            data['price'] = purchase.price
+            if (measured > 0 and measured < 1):
+                data['subtotal'] = purchase.price
+            else:
+                data['subtotal'] = f"{round(measured * float(purchase.price), 2)}"
+            
+            serializer = self.get_serializer(data=data)
+            serializer.is_valid(raise_exception=True)
+            invoice = serializer.save()
 
-        data['price'] = purchase.price
-        if (measured > 0 and measured < 1):
-            data['subtotal'] = purchase.price
-        else:
-            data['subtotal'] = f"{round(measured * float(purchase.price), 2)}"
-        
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        invoice = serializer.save()
-
-        # INFO: Actualiza el 'detalle del usuario' donde estado debe ser true para agregar al detalle del recibo
-        detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=True, status=True)
-        detail.update(invoice=invoice.id)
-
-        # INFO: Actualiza total de invoice en caso tenga detalle
-        if detail.exists():
-            income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total']
-            outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total']
-            invoice.total = invoice.subtotal + income - outcome
-            # invoice.total = invoice.subtotal + detail.aggregate(total=Sum('subtotal'))['subtotal']
-            invoice.usuario.save()
+            # INFO: Actualiza el 'detalle del usuario' donde estado debe ser true para agregar al detalle del recibo
+            detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=True, status=True)
+            # INFO: Actualiza total de invoice en caso tenga detalle
+            if detail.exists():
+                income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
+                outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
+                invoice.total = invoice.subtotal + income - outcome
+                detail.update(invoice=invoice.id)
+            else:
+                invoice.total = invoice.subtotal
+            invoice.save()
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
-        purchase = Purchase.objects.all().order_by('id').last()
-        partial = kwargs.pop('partial', False)
-        data = request.data.copy()
-        instance = self.get_object()
+        with transaction.atomic():
+            purchase = Purchase.objects.all().order_by('id').last()
+            partial = kwargs.pop('partial', False)
+            data = request.data.copy()
+            instance = self.get_object()
 
-        usuario = instance.usuario
-        if usuario.restart:
-            measured = float(data['measured'])
-            usuario.restart = False
-            usuario.save()
-        else:
-            measured = float(data['measured']) - float(data['previosMeasured'])
-        if (measured < 0):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            usuario = instance.usuario
+            if usuario.restart:
+                measured = Decimal(data['measured'])
+                usuario.restart = False
+                usuario.save()
+            else:
+                measured = Decimal(data['measured']) - Decimal(data['previosMeasured'])
+            if (measured < 0):
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+                
+            instance.price = purchase.price
+            instance.subtotal = round(measured * purchase.price, 2)
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            serializer.is_valid(raise_exception=True)
+            invoice = serializer.save()
             
-        instance.price = purchase.price
-        instance.subtotal = f"{round(measured * float(purchase.price), 2)}"
-        serializer = self.get_serializer(instance, data=request.data, partial=partial)
-        serializer.is_valid(raise_exception=True)
-        invoice = serializer.save()
-        
-        detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id)
-        if detail.exists():
-            invoice.total = invoice.subtotal + detail.aggregate(total=Sum('subtotal'))['subtotal']
-            invoice.usuario.save()
+            detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id)
+            if detail.exists():
+                income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
+                outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
+                invoice.total = invoice.subtotal + income - outcome
+                invoice.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     

@@ -111,6 +111,7 @@ class UsuarioView(viewsets.GenericViewSet):
         if quantity and float(quantity) > 0:
             data = request.data.copy()
             last_measured = instance.fk_invoice_usuario.order_by('-read_date').first().measured
+            print(quantity, last_measured)
             data['quantity'] = round(float(quantity) - float(last_measured), 2)
             if data['quantity'] < 0:
                 return Response(status=status.HTTP_204_NO_CONTENT) 
@@ -124,7 +125,8 @@ class UsuarioView(viewsets.GenericViewSet):
             detail_serializer.is_valid(raise_exception=True)
             detail_serializer.save()
         instance.save()
-        return Response(status=status.HTTP_200_OK)
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UsuarioDetailView(viewsets.GenericViewSet):
