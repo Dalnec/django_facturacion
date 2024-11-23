@@ -9,6 +9,7 @@ from apps.purchase.models import Purchase
 
 from django.http import HttpResponse
 from django.template.loader import get_template
+from django.db.models import Sum
 # from io import BytesIO
 import io
 from django.template.loader import render_to_string
@@ -47,35 +48,77 @@ class InvoiceView(viewsets.GenericViewSet):
         data = request.data.copy()
         purchase = Purchase.objects.all().order_by('id').last()
         invoices = Invoice.objects.filter(usuario=data['usuario']).order_by('id')
+        usuario = Usuario.objects.get(id=data['usuario'])
+        measured = 0
         last_measured = 0
+
         if not invoices.exists():
-            usuario = Usuario.objects.get(id=data['usuario'])
             if not usuario.last_measured:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             last_measured = usuario.last_measured
         else:
             last_measured = invoices.last().measured
-        measured = float(data['measured']) - float(last_measured)
-        # TODO: Calcular el total y validar el valor limite del medidor
-        if (measured <= 0):
+
+        if usuario.restart:
+            measured = float(data['measured'])
+            usuario.restart = False
+            usuario.save()
+        else:
+            measured = float(data['measured']) - float(last_measured)
+        if (measured < 0):
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
         data['price'] = purchase.price
-        data['total'] = f"{round(measured * float(purchase.price), 2)}"
+        if (measured > 0 and measured < 1):
+            data['subtotal'] = purchase.price
+        else:
+            data['subtotal'] = f"{round(measured * float(purchase.price), 2)}"
+        
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        invoice = serializer.save()
+
+        # INFO: Actualiza el 'detalle del usuario' donde estado debe ser true para agregar al detalle del recibo
+        detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=True, status=True)
+        detail.update(invoice=invoice.id)
+
+        # INFO: Actualiza total de invoice en caso tenga detalle
+        if detail.exists():
+            income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total']
+            outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total']
+            invoice.total = invoice.subtotal + income - outcome
+            # invoice.total = invoice.subtotal + detail.aggregate(total=Sum('subtotal'))['subtotal']
+            invoice.usuario.save()
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
+        purchase = Purchase.objects.all().order_by('id').last()
         partial = kwargs.pop('partial', False)
         data = request.data.copy()
-        measured = float(data['measured']) - float(data['previosMeasured'])
-        if (measured <= 0):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
         instance = self.get_object()
+
+        usuario = instance.usuario
+        if usuario.restart:
+            measured = float(data['measured'])
+            usuario.restart = False
+            usuario.save()
+        else:
+            measured = float(data['measured']) - float(data['previosMeasured'])
+        if (measured < 0):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+            
+        instance.price = purchase.price
+        instance.subtotal = f"{round(measured * float(purchase.price), 2)}"
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
-        serializer.save()
+        invoice = serializer.save()
+        
+        detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id)
+        if detail.exists():
+            invoice.total = invoice.subtotal + detail.aggregate(total=Sum('subtotal'))['subtotal']
+            invoice.usuario.save()
+
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def destroy(self, request, *args, **kwargs):
@@ -96,23 +139,28 @@ class InvoiceView(viewsets.GenericViewSet):
         invoice = self.get_object()
         data = self.serializer_class(invoice).data
         ticket = json.loads(data['ticket'])
-        data = {
+        # Construcción del contexto
+        context = {
             'header': ticket['header'],
             'body': ticket['body'],
+            'details': ticket['details'],
         }
-        return Response(data, template_name='./ticket.html', status=status.HTTP_200_OK)
+
+        return Response(context, template_name='./ticket.html', status=status.HTTP_200_OK)
     
     @action(detail=False, methods=['GET'], renderer_classes=[TemplateHTMLRenderer])
     def status_report(self, request, *args, **kwargs):
         # params = request.GET.dict()
         params = request.query_params.dict()
-        # print(.get('month', None))
-
         queryset = self.filter_queryset(self.get_queryset().order_by('-id'))
         data = {
             "invoices": queryset,
             "counter": 0,
+            "period": self.period(params['month'], params['year']),
             "params": params,
+            "total": queryset.aggregate(total=Sum('total'))['total'] or 0.0,
+            "count_depts": queryset.filter(status='D').count(),
+            "count_paid": queryset.filter(status='P').count(),
         }
         # return Response(data, template_name='./invoices.html', status=status.HTTP_200_OK)
        
@@ -123,6 +171,33 @@ class InvoiceView(viewsets.GenericViewSet):
         response = HttpResponse(pdf_file, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="Reporte_de_facturas.pdf"'
         return response
+    
+    def period(self, month, year):
+        if month == '1':
+            month = 'Enero'
+        elif month == '2':
+            month = 'Febrero'
+        elif month == '3':
+            month = 'Marzo'
+        elif month == '4':
+            month = 'Abril'
+        elif month == '5':
+            month = 'Mayo'
+        elif month == '6':
+            month = 'Junio'
+        elif month == '7':
+            month = 'Julio'
+        elif month == '8':
+            month = 'Agosto'
+        elif month == '9':
+            month = 'Septiembre'
+        elif month == '10':
+            month = 'Octubre'
+        elif month == '11':
+            month = 'Noviembre'
+        elif month == '12':
+            month = 'Diciembre'
+        return f"{month} {year}"
 
 
 
@@ -138,6 +213,7 @@ class InvoiceTicketView(RetrieveAPIView):
         data = {
             'header': ticket['header'],
             'body': ticket['body'],
+            'details': ticket['details'],
         }
 
         # Renderiza la plantilla HTML con los datos de la factura
@@ -148,7 +224,7 @@ class InvoiceTicketView(RetrieveAPIView):
         # Define el tamaño de la página en puntos (1 mm ≈ 2.83465 puntos)
         # 80 mm de ancho ≈ 227 puntos y un alto que puedes ajustar según el contenido.
         page_width = 227  # 80 mm en puntos
-        page_height = 300
+        page_height = 330
 
         # CSS para ajustar el tamaño de la página en el PDF
         custom_css = f"""

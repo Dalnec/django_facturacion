@@ -15,6 +15,7 @@ class Invoice(TimeStampedModel):
     measured = models.DecimalField("Lectura Medidor", max_digits=18, decimal_places=2, blank=True, null=True)
     price = models.DecimalField("Precio", max_digits=18, decimal_places=2, blank=True, null=True)
     total = models.DecimalField("Total", max_digits=18, decimal_places=2, blank=True, null=True)
+    subtotal = models.DecimalField("SubTotal", max_digits=18, decimal_places=2, blank=True, null=True)
     status = models.CharField("Estado", max_length=1, choices=STATUS_CHOICES, default='D')
     observations = models.CharField('Observaciones', max_length=255, blank=True, null=True)
 
@@ -56,6 +57,14 @@ class Invoice(TimeStampedModel):
         elif month == '12':
             month = 'Diciembre'
         return f"{month} {year}"
+
+    @property
+    def previous_measured(self):
+        previous_invoice = Invoice.objects.filter(
+            usuario=self.usuario,
+            read_date__lt=self.read_date
+        ).order_by('-read_date').first()
+        return previous_invoice.measured if previous_invoice else self.usuario.last_measured if self.usuario.last_measured else 0
 
     def get_previous_measured(self):
         previous_invoice = Invoice.objects.filter(

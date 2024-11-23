@@ -28,6 +28,7 @@ class Usuario(TimeStampedModel):
     employee = models.ForeignKey( "user.Employee", on_delete=models.SET_NULL, related_name="fk_usuario_employee", null=True, blank=True) 
     code = models.CharField("Codigo Medidor", max_length=10, blank=True, null=True)
     last_measured = models.DecimalField("Ultima Lectura Medidor", max_digits=18, decimal_places=2, blank=True, null=True)
+    restart = models.BooleanField("Reinicio", default=False)
 
     class Meta:
         ordering = ("-id",)
@@ -70,3 +71,28 @@ class Usuario(TimeStampedModel):
     @property
     def status_description(self):
         return dict(self.STATUS_CHOICES)[self.status]
+
+
+class UsuarioDetail(TimeStampedModel):
+
+    usuario = models.ForeignKey( "usuario.Usuario", on_delete=models.SET_NULL, related_name="fk_usuariodetail_usuario", null=True, blank=True ) 
+    invoice = models.ForeignKey( "invoice.Invoice", on_delete=models.SET_NULL, related_name="fk_usuariodetail_invoice", null=True, blank=True )
+    description = models.CharField("Descripcion", max_length=255, blank=True, null=True)
+    price = models.DecimalField("Precio", max_digits=18, decimal_places=2, blank=True, null=True)
+    quantity = models.DecimalField("Cantidad", max_digits=18, decimal_places=2, blank=True, null=True)
+    subtotal = models.DecimalField("Subtotal", max_digits=18, decimal_places=2, blank=True, null=True)
+    is_income = models.BooleanField("Es Ingreso?", default=True)
+    status = models.BooleanField("Estado", default=True)
+    
+    class Meta:
+        ordering = ("-id",)
+        db_table = "UsuarioDetail"
+        verbose_name = "UsuarioDetail"
+    
+    @property
+    def invoice_number(self):
+        return self.invoice.id if self.invoice else None
+    
+    @property
+    def invoice_status(self):
+        return dict(self.invoice.STATUS_CHOICES)[self.invoice.status] if self.invoice else None

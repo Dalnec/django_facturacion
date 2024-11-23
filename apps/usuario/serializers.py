@@ -14,3 +14,19 @@ class UsuarioSerializer(serializers.ModelSerializer):
 
     def get_makeInvoice(self, obj):
         return obj.makeInvoice
+
+
+class UsuarioDetailSerializer(serializers.ModelSerializer):
+    invoice_number = serializers.ReadOnlyField()
+    invoice_status = serializers.ReadOnlyField()
+
+    class Meta:
+        model = UsuarioDetail
+        fields = '__all__'
+
+
+class UsuarioDetailTicketSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UsuarioDetail
+        fields = [ "description", "price", "quantity", "subtotal", "is_income" ]

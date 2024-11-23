@@ -7,6 +7,7 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from django.db import transaction
 
 from apps.user.serializers import UserSerializer
+from apps.purchase.models import Purchase
 from .models import *
 from .serializers import *
 from .filters import *
@@ -101,3 +102,88 @@ class UsuarioView(viewsets.GenericViewSet):
         response = HttpResponse(pdf_file, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="Reporte_de_usuarios.pdf"'
         return response
+
+    @action(detail=True, methods=['PUT'] )
+    def restart_measured(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.restart = True
+        quantity = request.data.get('quantity', None)
+        if quantity and float(quantity) > 0:
+            data = request.data.copy()
+            last_measured = instance.fk_invoice_usuario.order_by('-read_date').first().measured
+            data['quantity'] = round(float(quantity) - float(last_measured), 2)
+            if data['quantity'] < 0:
+                return Response(status=status.HTTP_204_NO_CONTENT) 
+            purchase = Purchase.objects.all().order_by('id').last()
+            data['price'] = purchase.price
+            if data['quantity'] > 1:
+                data['subtotal'] = f"{round(data['quantity'] * float(purchase.price), 2)}"
+            else:
+                data['subtotal'] = purchase.price
+            detail_serializer = UsuarioDetailSerializer(data=data)
+            detail_serializer.is_valid(raise_exception=True)
+            detail_serializer.save()
+        instance.save()
+        return Response(status=status.HTTP_200_OK)
+
+
+class UsuarioDetailView(viewsets.GenericViewSet):
+    serializer_class = UsuarioDetailSerializer
+    queryset = UsuarioDetail.objects.all()
+    filter_backends = [DjangoFilterBackend,]
+    filterset_class = UsuarioDetailFilter
+    pagination_class = UsuarioDetailPagination
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def create(self, request, *args, **kwargs):
+        price = request.data.get('price', None)
+        quantity = request.data.get('quantity', None)
+        if not price or not quantity:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.validated_data['subtotal'] = f"{round(float(price) * float(quantity), 2)}"
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        price = request.data.get('price', None)
+        quantity = request.data.get('quantity', None)
+        if not price or not quantity:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        # serializer.validated_data['subtotal'] = f"{round(float(price) * float(quantity), 2)}"
+        serializer.save()
+
+        # INFO: Verificar si tiene invoice
+        if instance.invoice:
+            invoice = instance.invoice
+            invoice.total = invoice.total + float(serializer.validated_data['subtotal']) - instance.subtotal
+            invoice.save()
+        return Response(serializer.data)
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # instance.delete()
+        instance.status = False
+        instance.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)

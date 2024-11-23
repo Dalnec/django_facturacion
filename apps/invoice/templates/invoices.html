@@ -18,23 +18,23 @@
     </style>
   </head>
   <body>
-    <div style="text-align: center; margin: 2px 0; font-size: 14px; font-weight: bold;">
-      <span>LISTA DE RECIBOS {{ header.number }}</span>
+    <div style="text-align: center; margin: 2px 0; padding: 0; font-size: 14px; font-weight: bold;">
+      <span>LISTA DE RECIBOS - {{ period|upper }}</span>
     </div>
 
     <table style="border-collapse: collapse; padding: 0; margin: 0; width: 100%; justify-content: center;  align-items: center;">
       <thead>
         <tr style="padding: 3px 0 0 0;">
-          <th style="background-color: #ace1fc; width: 45px"></th>
-          <th style="background-color: #ace1fc; width: 55px">N° Recibo</th>
-          <th style="background-color: #ace1fc; width: 85px">Fecha Lectura</th>
-          <th style="background-color: #ace1fc; width: 85px">Periodo</th>
+          <th style="background-color: #ace1fc; width: 35px"></th>
+          <th style="background-color: #ace1fc; width: 65px">N° Recibo</th>
+          <th style="background-color: #ace1fc; width: 90px">Fecha Lectura</th>
           <th style="background-color: #ace1fc; width: 160px">Usuario</th>
-          <th style="background-color: #ace1fc; width: 60px">Telefono</th>
-          <th style="background-color: #ace1fc; width: 65px">Consumido</th>
-          <th style="background-color: #ace1fc; width: 55px">Tarifa</th>
+          <th style="background-color: #ace1fc; width: 70px">Anterior</th>
+          <th style="background-color: #ace1fc; width: 70px">Actual</th>
+          <th style="background-color: #ace1fc; width: 75px">Consumido</th>
           <th style="background-color: #ace1fc; width: 70px">Total</th>
           <th style="background-color: #ace1fc; width: 70px">Estado</th>
+          <th style="background-color: #ace1fc; width: 140px">Observaciones</th>
         </tr>
       </thead>
       <tbody>
@@ -50,20 +50,17 @@
             {{ invoice.read_date|date:'Y-m-d h:m:s' }}
           </td>
           <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
-            {{ invoice.period }}
-          </td>
-          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
             {{ invoice.usuario.ci }} <br>
             {{ invoice.usuario.full_name }}
           </td>
           <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
-            {{ invoice.usuario.phone }}
+            {{ invoice.previous_measured }}
+          </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.measured }}
           </td>
           <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
             {{ invoice.measured_diff }}
-          </td>
-          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
-            {{ invoice.price }}
           </td>
           <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
             {{ invoice.total }}
@@ -71,8 +68,23 @@
           <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
             {{ invoice.status_description }}
           </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;">
+            {{ invoice.observations }}
+          </td>
         </tr>
         {% endfor %}
+        <tr>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> TOTAL </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> {{ total }} </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+          <td style="vertical-align: middle; padding: 3px 0px 0 0; text-align: center;"> </td>
+        </tr>
       </tbody>
     </table>
   </body>

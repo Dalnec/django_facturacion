@@ -1,7 +1,8 @@
 import json
+from decimal import Decimal
 from rest_framework import serializers
 from .models import *
-from decimal import Decimal
+from apps.usuario.serializers import UsuarioDetailTicketSerializer
 
 class TicketHeaderSerializer(serializers.ModelSerializer):
     emission_date = serializers.SerializerMethodField(read_only=True)
@@ -31,7 +32,7 @@ class TicketBodySerializer(serializers.ModelSerializer):
     consumed = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Invoice
-        fields = ('previous_reading', 'actual_reading', 'price', 'total', 
+        fields = ('previous_reading', 'actual_reading', 'price', 'total', 'subtotal',
             'previous_month', 'actual_month', 'consumed')
 
     def get_previous_month(self, obj):
@@ -62,13 +63,17 @@ class InvoiceSerializer(serializers.ModelSerializer):
     def get_ticket(self, obj):
         header = TicketHeaderSerializer(obj).data
         body = TicketBodySerializer(obj).data
+        usuario_detail = obj.fk_usuariodetail_invoice.filter(status=True)
+        details = UsuarioDetailTicketSerializer(usuario_detail, many=True).data
         # return {
         #     'header': header,
-        #     'body': body
+        #     'body': body,
+        #     'details': details,
         # }
         return json.dumps({
             'header': header,
-            'body': body
+            'body': body,
+            'details': details,
         })
 
     def get_employeeName(self, obj):

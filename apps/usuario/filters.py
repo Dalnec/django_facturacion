@@ -89,3 +89,18 @@ class UsuarioPagination(PageNumberPagination):
     page_size_query_param = "page_size"
     max_page_size = 100
     page_size = 20
+
+
+
+
+class UsuarioDetailFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = UsuarioDetail
+        fields = [ "usuario", "invoice",]
+
+
+class UsuarioDetailPagination(PageNumberPagination):
+    page_size_query_param = "page_size"
+    max_page_size = 100
+    page_size = 20
