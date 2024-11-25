@@ -28,7 +28,7 @@ class SeedingView(GenericViewSet):
             Profile.objects.get_or_create( id=3, description="USUARIO" )
 
             self.seed_employees()
-            self.seed_usuarios()
+            # self.seed_usuarios()
 
             file_resources = {
                 'apps/seeder/data/monitoring.json': MonitoringResource(),
@@ -37,17 +37,17 @@ class SeedingView(GenericViewSet):
             }
 
 
-            for file_path, resource_model in file_resources.items():
-                dataset = Dataset()
+            # for file_path, resource_model in file_resources.items():
+            #     dataset = Dataset()
 
-                with open(file_path, 'r', encoding='utf-8') as json_file:
-                    json_data = json.load(json_file)
-                    dataset.dict = json_data
+            #     with open(file_path, 'r', encoding='utf-8') as json_file:
+            #         json_data = json.load(json_file)
+            #         dataset.dict = json_data
 
-                result = resource_model.import_data(dataset, dry_run=False)
+            #     result = resource_model.import_data(dataset, dry_run=False)
 
-                if result.has_errors():
-                    errors = result.row_errors()
+            #     if result.has_errors():
+            #         errors = result.row_errors()
             
             Distric.objects.get_or_create(
                 id=1,
@@ -73,8 +73,8 @@ class SeedingView(GenericViewSet):
                 "phone": "78945612",
                 "address": "Calle Beni 100",
                 "status": "A",
-                "username": "78945612",
-                "password": "78945612",
+                "username": "7456321",
+                "password": "7456321",
                 "profile": 1
             },
 

@@ -9,5 +9,5 @@ class DistricSerializer(serializers.ModelSerializer):
 
 class SettingsSerializer(serializers.Serializer):
     interval_time_device = serializers.IntegerField(min_value=1)
-    height = serializers.IntegerField(min_value=1)
-    width = serializers.IntegerField(min_value=1)
+    height = serializers.CharField()
+    width = serializers.CharField()
