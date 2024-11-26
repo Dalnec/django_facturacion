@@ -73,7 +73,7 @@ class InvoiceView(viewsets.GenericViewSet):
             
             depts = Invoice.objects.filter(usuario=data['usuario'], status='D')
             if depts.exists():
-                UsuarioDetail.generate_mora(data['usuario'])
+                UsuarioDetail.generate_mora(usuario)
 
             data['price'] = purchase.price
             if (measured > 0 and measured < 1):
