@@ -1,4 +1,5 @@
 import uuid
+import math
 from django.db import models
 from model_utils.models import TimeStampedModel
 
@@ -66,6 +67,14 @@ class Invoice(TimeStampedModel):
         ).order_by('-read_date').first()
         return previous_invoice.measured if previous_invoice else self.usuario.last_measured if self.usuario.last_measured else 0
 
+    @property
+    def previous_month(self):
+        previous_invoice = Invoice.objects.filter(
+            usuario=self.usuario,
+            read_date__lt=self.read_date
+        ).order_by('-read_date').first()
+        return previous_invoice.period if previous_invoice else '-'   
+
     def get_previous_measured(self):
         previous_invoice = Invoice.objects.filter(
             usuario=self.usuario,
@@ -87,3 +96,10 @@ class Invoice(TimeStampedModel):
     @property
     def status_description(self):
         return dict(self.STATUS_CHOICES)[self.status]
+    
+    @classmethod
+    def custom_round(cls, number):
+        if number - math.floor(number) >= 0.5:
+            return math.ceil(number)
+        else:
+            return math.floor(number)

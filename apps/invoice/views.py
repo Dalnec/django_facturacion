@@ -17,6 +17,7 @@ from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
 from apps.usuario.models import Usuario
+from datetime import date
 from decimal import Decimal
 from .models import *
 from .serializers import *
@@ -74,7 +75,7 @@ class InvoiceView(viewsets.GenericViewSet):
             if (measured > 0 and measured < 1):
                 data['subtotal'] = purchase.price
             else:
-                data['subtotal'] = f"{round(measured * float(purchase.price), 2)}"
+                data['subtotal'] = f"{Invoice.custom_round(measured * float(purchase.price))}"
             
             serializer = self.get_serializer(data=data)
             serializer.is_valid(raise_exception=True)
@@ -110,9 +111,11 @@ class InvoiceView(viewsets.GenericViewSet):
                 measured = Decimal(data['measured']) - Decimal(data['previosMeasured'])
             if (measured < 0):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
-                
-            instance.price = purchase.price
-            instance.subtotal = round(measured * purchase.price, 2)
+            
+            today = date.today()
+            if today == invoice.read_date.date():
+                instance.price = purchase.price
+            instance.subtotal = Invoice.custom_round(measured * instance.price)
             serializer = self.get_serializer(instance, data=request.data, partial=partial)
             serializer.is_valid(raise_exception=True)
             invoice = serializer.save()

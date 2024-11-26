@@ -4,6 +4,7 @@ from .models import *
 class UsuarioSerializer(serializers.ModelSerializer):
     hasDebt = serializers.SerializerMethodField(read_only=True)
     makeInvoice = serializers.SerializerMethodField(read_only=True)
+    lastInvoice = serializers.ReadOnlyField()
 
     class Meta:
         model = Usuario

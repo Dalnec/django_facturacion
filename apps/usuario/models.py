@@ -71,6 +71,13 @@ class Usuario(TimeStampedModel):
     @property
     def status_description(self):
         return dict(self.STATUS_CHOICES)[self.status]
+    
+    @property
+    def lastInvoice(self):
+        invoice = self.fk_invoice_usuario.order_by('-read_date').first()
+        if not invoice:
+            return None
+        return f"{invoice.previous_month} -> {invoice.previous_measured}"
 
 
 class UsuarioDetail(TimeStampedModel):
