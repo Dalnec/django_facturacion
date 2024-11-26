@@ -24,7 +24,7 @@ class SeedingView(GenericViewSet):
         try:
             User.objects.create_superuser('ADMIN', 'admin')
             Profile.objects.get_or_create( id=1, description="ADMINISTRADOR" )
-            Profile.objects.get_or_create( id=2, description="COBRADOR" )
+            Profile.objects.get_or_create( id=2, description="LECTURADOR" )
             Profile.objects.get_or_create( id=3, description="USUARIO" )
 
             self.seed_employees()
