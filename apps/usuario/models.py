@@ -77,7 +77,7 @@ class Usuario(TimeStampedModel):
         invoice = self.fk_invoice_usuario.order_by('-read_date').first()
         if not invoice:
             return None
-        return f"{invoice.previous_month} -> {invoice.previous_measured}"
+        return f"{invoice.period} -> {invoice.measured}"
 
 
 class UsuarioDetail(TimeStampedModel):
