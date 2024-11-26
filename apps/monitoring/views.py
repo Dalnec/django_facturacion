@@ -52,7 +52,7 @@ class MonitoringView(viewsets.GenericViewSet):
         instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], serializer_class=LastMonitoringSerializer)
     def get_last(self, request):
         queryset = self.get_queryset().order_by('pk').last()
         serializer = self.get_serializer(queryset)

@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.db import models
 from model_utils.models import TimeStampedModel
 from apps.distric.models import Distric
+from decimal import Decimal
 
 class Monitoring(TimeStampedModel):
 
@@ -37,3 +38,32 @@ class Monitoring(TimeStampedModel):
         if read_date_naive >= now - datetime.timedelta(minutes=interval):
             return True
         return False
+    
+    @property
+    def liters(self):
+        distric = Distric.objects.get(pk=1)
+        liters = None
+        if self.measured and distric.settings["height"] and distric.settings["width"] and distric.settings["length"]:
+            height = (Decimal(distric.settings["height"]) * Decimal(0.01)) - (Decimal(self.measured) * Decimal(0.01))
+            width = Decimal(distric.settings["width"]) * Decimal(0.01)
+            length = Decimal(distric.settings["length"]) * Decimal(0.01)
+            liters = height * width * length
+            liters = round(liters * 1000 , 2)
+        return liters
+    
+    @property
+    def height(self):
+        distric = Distric.objects.get(pk=1)
+        return distric.settings["height"] or 0
+    
+    @property
+    def capacity(self):
+        distric = Distric.objects.get(pk=1)
+        liters = None
+        if self.measured and distric.settings["height"] and distric.settings["width"] and distric.settings["length"]:
+            height = Decimal(distric.settings["height"]) * Decimal(0.01)
+            width = Decimal(distric.settings["width"]) * Decimal(0.01)
+            length = Decimal(distric.settings["length"]) * Decimal(0.01)
+            liters = height * width * length
+            liters = round(liters * 1000 , 2)
+        return liters

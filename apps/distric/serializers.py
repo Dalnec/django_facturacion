@@ -11,6 +11,7 @@ class SettingsSerializer(serializers.Serializer):
     interval_time_device = serializers.IntegerField(min_value=1)
     height = serializers.CharField()
     width = serializers.CharField()
+    length = serializers.CharField()
 
     def to_representation(self, instance):
         """
