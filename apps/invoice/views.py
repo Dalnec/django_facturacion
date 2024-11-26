@@ -16,7 +16,7 @@ import io
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
-from apps.usuario.models import Usuario
+from apps.usuario.models import Usuario, UsuarioDetail
 from datetime import date
 from decimal import Decimal
 from .models import *
@@ -70,6 +70,10 @@ class InvoiceView(viewsets.GenericViewSet):
                 measured = float(data['measured']) - float(last_measured)
             if (measured < 0):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
+            
+            depts = Invoice.objects.filter(usuario=data['usuario'], status='D')
+            if depts.exists():
+                UsuarioDetail.generate_mora(data['usuario'])
 
             data['price'] = purchase.price
             if (measured > 0 and measured < 1):
@@ -113,7 +117,7 @@ class InvoiceView(viewsets.GenericViewSet):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             
             today = date.today()
-            if today == invoice.read_date.date():
+            if today == instance.read_date.date():
                 instance.price = purchase.price
             instance.subtotal = Invoice.custom_round(measured * instance.price)
             serializer = self.get_serializer(instance, data=request.data, partial=partial)
