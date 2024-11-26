@@ -91,7 +91,7 @@ class InvoiceView(viewsets.GenericViewSet):
             if detail.exists():
                 income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
                 outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
-                invoice.total = invoice.subtotal + income - outcome
+                invoice.total = Invoice.custom_round(invoice.subtotal + income - outcome)
                 detail.update(invoice=invoice.id)
             else:
                 invoice.total = invoice.subtotal
@@ -128,8 +128,10 @@ class InvoiceView(viewsets.GenericViewSet):
             if detail.exists():
                 income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
                 outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
-                invoice.total = invoice.subtotal + income - outcome
-                invoice.save()
+                invoice.total = Invoice.custom_round(invoice.subtotal + income - outcome)
+            else:
+                invoice.total = invoice.subtotal
+            invoice.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     
