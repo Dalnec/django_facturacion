@@ -27,6 +27,7 @@ LOCAL_APPS = [
     "apps.purchase",
     "apps.user",
     "apps.usuario",
+    "apps.seeder",
 ]
 
 THIRD_APPS = [
