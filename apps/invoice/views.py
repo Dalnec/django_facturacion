@@ -170,30 +170,30 @@ class InvoiceView(viewsets.GenericViewSet):
         params = request.query_params.dict()
         queryset = self.filter_queryset(self.get_queryset().order_by('-id'))
         # concatenar en observaciones los detalles de la factura
-        # for invoice in queryset:
-        #     details = invoice.fk_usuariodetail_invoice.all()
-        #     if details.exists():
-        #         for detail in details:
-        #             invoice.observaciones = f"{invoice.observations} | {detail.description} {detail.subtotal}"
-        queryset = queryset.annotate(
-            details=Concat(
-                Case(
-                    When(observations__isnull=True, then=Value('')),  # Si es None, usa una cadena vacía
-                    default=F('observations'),  # Usa el valor de observations si no es None
-                    output_field=TextField()
-                ),
-                Value(' | '),  # Separador
-                Subquery(
-                    UsuarioDetail.objects.filter(invoice=OuterRef('id'))
-                    .values('invoice')
-                    .annotate(
-                        detalles_concat=StringAgg('description', delimiter=' | ')
-                    )
-                    .values('detalles_concat')
-                ),
-                output_field=TextField()
-            )
-        )
+        for invoice in queryset:
+            details = invoice.fk_usuariodetail_invoice.all()
+            if details.exists():
+                for detail in details:
+                    invoice.observaciones = f"{invoice.observations if invoice.observations else ''} | {detail.description} {detail.subtotal}"
+        # queryset = queryset.annotate(
+        #     details=Concat(
+        #         Case(
+        #             When(observations__isnull=True, then=Value('')),  # Si es None, usa una cadena vacía
+        #             default=F('observations'),  # Usa el valor de observations si no es None
+        #             output_field=TextField()
+        #         ),
+        #         Value(' | '),  # Separador
+        #         Subquery(
+        #             UsuarioDetail.objects.filter(invoice=OuterRef('id'))
+        #             .values('invoice')
+        #             .annotate(
+        #                 detalles_concat=StringAgg('description', delimiter=' | ')
+        #             )
+        #             .values('detalles_concat')
+        #         ),
+        #         output_field=TextField()
+        #     )
+        # )
         data = {
             "invoices": queryset,
             "counter": 0,
