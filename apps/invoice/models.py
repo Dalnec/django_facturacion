@@ -99,7 +99,7 @@ class Invoice(TimeStampedModel):
     
     @classmethod
     def custom_round(cls, number):
-        if number - math.floor(number) >= 0.5:
+        if number - math.floor(number) >= 0.49:
             return math.ceil(number)
         else:
             return math.floor(number)

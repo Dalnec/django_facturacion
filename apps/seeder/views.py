@@ -74,8 +74,8 @@ class SeedingView(GenericViewSet):
                 "phone": "78945612",
                 "address": "Calle Beni 100",
                 "status": "A",
-                "username": "7456321",
-                "password": "7456321",
+                "username": "administrador",
+                "password": "123456",
                 "profile": 1
             },
 

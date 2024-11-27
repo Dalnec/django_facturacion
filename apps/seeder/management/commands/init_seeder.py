@@ -41,23 +41,10 @@ class Command(BaseCommand):
                 "phone": "78945612",
                 "address": "Calle Beni 100",
                 "status": "A",
-                "username": "7456321",
-                "password": "7456321",
+                "username": "administrador",
+                "password": "123456",
                 "profile": 1
             },
-
-            {
-                "ci": "1013577",
-                "names": "facturador",
-                "lastnames": "facturador",
-                "email": "factur@factur.com",
-                "phone": "77967878",
-                "address": "Calle Juan Pablo 101",
-                "status": "A",
-                "username": "1013577",
-                "password": "1013577",
-                "profile": 2
-            }
         ]
 
         for employee in employee_data:
