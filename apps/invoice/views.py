@@ -58,7 +58,7 @@ class InvoiceView(viewsets.GenericViewSet):
             last_measured = 0
 
             if not invoices.exists():
-                if not usuario.last_measured:
+                if usuario.last_measured != 0 and not usuario.last_measured:
                     return Response(status=status.HTTP_400_BAD_REQUEST)
                 last_measured = usuario.last_measured
             else:
