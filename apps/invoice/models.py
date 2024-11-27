@@ -91,7 +91,7 @@ class Invoice(TimeStampedModel):
     
     @property
     def measured_diff(self):
-        return round(float(self.measured) - float(self.get_previous_measured()), 2)
+        return round(float(self.measured) - float(self.previous_measured), 2)
 
     @property
     def status_description(self):

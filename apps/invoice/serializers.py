@@ -52,6 +52,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
     ticket = serializers.SerializerMethodField()
     employeeName = serializers.SerializerMethodField()
     previosMeasured = serializers.SerializerMethodField()
+    measured_diff = serializers.ReadOnlyField()
 
     class Meta:
         model = Invoice
