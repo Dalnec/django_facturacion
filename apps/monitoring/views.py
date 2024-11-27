@@ -2,7 +2,14 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
+from rest_framework.renderers import TemplateHTMLRenderer
 from django_filters.rest_framework import DjangoFilterBackend
+from django.db.models import F, ExpressionWrapper, FloatField
+
+import io
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from xhtml2pdf import pisa
 
 from .models import *
 from .serializers import *
@@ -63,3 +70,57 @@ class MonitoringView(viewsets.GenericViewSet):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=['GET'], renderer_classes=[TemplateHTMLRenderer])
+    def report(self, request, *args, **kwargs):
+        params = request.query_params.dict()
+        queryset = self.filter_queryset(self.get_queryset().order_by('-id'))
+        # annotae altura - medido
+        # queryset = queryset.annotate(altura=ExpressionWrapper(F('height') - F('measured'), output_field=FloatField()))
+        monitorings = []
+        for monitoring in queryset:
+            monitoring.altura = round(float(monitoring.height) - float(monitoring.measured), 2)
+            monitorings.append(monitoring)
+        # queryset = monitorings
+        data = {
+            "monitorings": monitorings,
+            "counter": 0,
+            "period": self.period(params['month'], params['year']),
+            "params": params,
+        }
+        # return Response(data, template_name='./monitorings.html', status=status.HTTP_200_OK)
+       
+        html = render_to_string('monitorings.html', data)
+        pdf_file = io.BytesIO()
+        pisa.CreatePDF(io.BytesIO(html.encode("UTF-8")), dest=pdf_file)
+        pdf_file.seek(0)
+        response = HttpResponse(pdf_file, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="Reporte_Monitoreo.pdf"'
+        return response
+    
+    def period(self, month, year):
+        if month == '1':
+            month = 'Enero'
+        elif month == '2':
+            month = 'Febrero'
+        elif month == '3':
+            month = 'Marzo'
+        elif month == '4':
+            month = 'Abril'
+        elif month == '5':
+            month = 'Mayo'
+        elif month == '6':
+            month = 'Junio'
+        elif month == '7':
+            month = 'Julio'
+        elif month == '8':
+            month = 'Agosto'
+        elif month == '9':
+            month = 'Septiembre'
+        elif month == '10':
+            month = 'Octubre'
+        elif month == '11':
+            month = 'Noviembre'
+        elif month == '12':
+            month = 'Diciembre'
+        return f"{month} {year}"

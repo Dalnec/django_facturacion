@@ -179,7 +179,6 @@ class InvoiceView(viewsets.GenericViewSet):
                         invoice.observations = f"{invoice.observations} | {detail.description} {detail.subtotal}"
                     else:
                         invoice.observations = f"{detail.description} {detail.subtotal}"
-                print(invoice.observations)
             else:
                 invoice.observations = '' if invoice.observations is None else invoice.observations
             invoices.append(invoice)
@@ -249,6 +248,41 @@ class InvoiceView(viewsets.GenericViewSet):
         return f"{month} {year}"
 
 
+    @action(detail=False, methods=['GET'], renderer_classes=[TemplateHTMLRenderer])
+    def report_usuario(self, request, *args, **kwargs):
+        params = request.query_params.dict()
+        queryset = self.filter_queryset(self.get_queryset().order_by('-id'))
+        
+        invoices = []
+        for invoice in queryset:
+            details = invoice.fk_usuariodetail_invoice.all()
+            if details.exists():
+                for detail in details:
+                    if invoice.observations and invoice.observations != '' and invoice.observations != 'None':
+                        invoice.observations = f"{invoice.observations} | {detail.description} {detail.subtotal}"
+                    else:
+                        invoice.observations = f"{detail.description} {detail.subtotal}"
+            else:
+                invoice.observations = '' if invoice.observations is None else invoice.observations
+            invoices.append(invoice)
+
+        data = {
+            "invoices": invoices,
+            "usuario": queryset.first().usuario,
+            "counter": 0,
+            "period": params['year'],
+            "params": params,
+            "total": queryset.aggregate(total=Sum('total'))['total'] or 0.0,
+            "count_depts": queryset.filter(status='D').count(),
+            "count_paid": queryset.filter(status='P').count(),
+        }
+        html = render_to_string('invoices_usuario.html', data)
+        pdf_file = io.BytesIO()
+        pisa.CreatePDF(io.BytesIO(html.encode("UTF-8")), dest=pdf_file)
+        pdf_file.seek(0)
+        response = HttpResponse(pdf_file, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="Reporte_de_facturas.pdf"'
+        return response
 
 class InvoiceTicketView(RetrieveAPIView):
     queryset = Invoice.objects.all()

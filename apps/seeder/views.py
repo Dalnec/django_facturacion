@@ -51,11 +51,12 @@ class SeedingView(GenericViewSet):
             
             Distric.objects.get_or_create(
                 id=1,
-                name="OTB VILLA ESPERANZA",
+                name="OTB BARRIO LUZS",
                 address="CALLE DOS DE MAYO 799",
-                representative="JUAN PEREZ",
+                representative="JIMMY",
                 phone="65359585",
-                email="otb@otb.com"
+                email="otb@otb.com",
+                settings={"width": "240", "height": "240", "length": "230", "interval_time_device": 1500000}
             )
 
             return Response('Seeding Completed!', status=status.HTTP_200_OK)
