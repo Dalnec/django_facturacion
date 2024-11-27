@@ -28,7 +28,7 @@ class SeedingView(GenericViewSet):
             Profile.objects.get_or_create( id=3, description="USUARIO" )
 
             self.seed_employees()
-            # self.seed_usuarios()
+            self.seed_usuarios()
 
             # file_resources = {
             #     'apps/seeder/data/monitoring.json': MonitoringResource(),
