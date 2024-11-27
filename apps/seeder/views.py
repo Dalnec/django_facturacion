@@ -30,11 +30,11 @@ class SeedingView(GenericViewSet):
             self.seed_employees()
             # self.seed_usuarios()
 
-            file_resources = {
-                'apps/seeder/data/monitoring.json': MonitoringResource(),
-                'apps/seeder/data/invoices.json': InvoiceResource(),
-                'apps/seeder/data/purchases.json': PurchaseResource(),
-            }
+            # file_resources = {
+            #     'apps/seeder/data/monitoring.json': MonitoringResource(),
+            #     'apps/seeder/data/invoices.json': InvoiceResource(),
+            #     'apps/seeder/data/purchases.json': PurchaseResource(),
+            # }
 
 
             # for file_path, resource_model in file_resources.items():
