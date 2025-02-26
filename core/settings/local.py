@@ -21,6 +21,8 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://*.tsi.pe/',
     'https://*.tsi.pe/',
+    'http://*.tsifactur.com',
+    'https://*.tsifactur.com',
 ]
 
 DATABASES = {
