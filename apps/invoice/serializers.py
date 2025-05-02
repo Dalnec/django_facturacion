@@ -49,10 +49,10 @@ class TicketBodySerializer(serializers.ModelSerializer):
         return str(obj.measured - Decimal(self.get_previous_reading(obj)))
     
     def get_total(self, obj):
-        usuario_detail = obj.fk_usuariodetail_invoice.filter(status=True)
-        details = UsuarioDetailTicketSerializer(usuario_detail, many=True).data
-        if details:
-            return str(Decimal(obj.total) + sum(Decimal(detail['subtotal']) for detail in details))
+        # usuario_detail = obj.fk_usuariodetail_invoice.filter(status=True)
+        # details = UsuarioDetailTicketSerializer(usuario_detail, many=True).data
+        # if details:
+        #     return str(Decimal(obj.total) + sum(Decimal(detail['subtotal']) for detail in details))
         return str(obj.total)
 
 class InvoiceSerializer(serializers.ModelSerializer):
