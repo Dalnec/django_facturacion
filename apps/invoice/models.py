@@ -115,4 +115,5 @@ class Invoice(TimeStampedModel):
             self.total = Invoice.custom_round(self.subtotal + income - outcome)
         else:
             self.total = self.subtotal
+        print("+++++++", self.total)
         self.save() 
