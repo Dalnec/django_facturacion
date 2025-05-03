@@ -5,6 +5,7 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.renderers import TemplateHTMLRenderer
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import F, ExpressionWrapper, FloatField
+from drf_spectacular.utils import extend_schema
 
 import io
 from django.http import HttpResponse
@@ -15,6 +16,7 @@ from .models import *
 from .serializers import *
 from .filters import *
 
+@extend_schema(tags=["Monitoring"])
 class MonitoringView(viewsets.GenericViewSet):
     serializer_class = MonitoringSerializer
     queryset = Monitoring.objects.all()

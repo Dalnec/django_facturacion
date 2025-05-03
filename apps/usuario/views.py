@@ -16,7 +16,9 @@ import io
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 from django.http import HttpResponse
+from drf_spectacular.utils import extend_schema
 
+@extend_schema(tags=["Usuario"])
 class UsuarioView(viewsets.GenericViewSet):
     serializer_class = UsuarioSerializer
     queryset = Usuario.objects.all()
@@ -129,6 +131,7 @@ class UsuarioView(viewsets.GenericViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@extend_schema(tags=["UsuarioDetail"])
 class UsuarioDetailView(viewsets.GenericViewSet):
     serializer_class = UsuarioDetailSerializer
     queryset = UsuarioDetail.objects.all()

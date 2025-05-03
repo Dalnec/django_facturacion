@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema
 from rest_framework.renderers import TemplateHTMLRenderer
 from apps.purchase.models import Purchase
 
@@ -25,6 +26,7 @@ from .models import *
 from .serializers import *
 from .filters import *
 
+@extend_schema(tags=["Invoice"])
 class InvoiceView(viewsets.GenericViewSet):
     serializer_class = InvoiceSerializer
     queryset = Invoice.objects.all()
@@ -284,6 +286,7 @@ class InvoiceView(viewsets.GenericViewSet):
         response['Content-Disposition'] = f'attachment; filename="Reporte_de_facturas.pdf"'
         return response
 
+@extend_schema(tags=["Invoice"])
 class InvoiceTicketView(RetrieveAPIView):
     queryset = Invoice.objects.all()
     serializer_class = InvoiceSerializer

@@ -2,11 +2,13 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema
 
 from .models import *
 from .serializers import *
 from .filters import *
 
+@extend_schema(tags=["Distric"])
 class DistricView(viewsets.GenericViewSet):
     serializer_class = DistricSerializer
     queryset = Distric.objects.all()

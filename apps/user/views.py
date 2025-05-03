@@ -7,11 +7,13 @@ from rest_framework.generics import GenericAPIView
 from django.db import transaction
 from django.contrib.auth import authenticate
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema
 
 from .models import *
 from .serializers import *
 from .filters import *
 
+@extend_schema(tags=["Profile"])
 class ProfileView(viewsets.GenericViewSet):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
@@ -54,7 +56,7 @@ class ProfileView(viewsets.GenericViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
+@extend_schema(tags=["User"])
 class UserView(viewsets.GenericViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
@@ -110,7 +112,7 @@ class UserView(viewsets.GenericViewSet):
             "message": "Sesion Iniciada",
         }, status=status.HTTP_200_OK)
 
-
+@extend_schema(tags=["Login"])
 class Login(ObtainAuthToken):
     serializer_class = LoginSerializer
     def post(self, request):
@@ -135,7 +137,7 @@ class Login(ObtainAuthToken):
         else:
             return Response({'error': 'Credenciales Incorrectas :('}, status=status.HTTP_400_BAD_REQUEST)
 
-
+@extend_schema(tags=["Logout"])
 class Logout(GenericAPIView):
     serializer_class = ProfileSerializer
     def delete(self, request, *args, **kwargs):
@@ -145,7 +147,7 @@ class Logout(GenericAPIView):
             return Response({"message": "Sesión Cerrada"}, status=status.HTTP_200_OK)
         return Response( {"error": "Usuario no autenticado"}, status=status.HTTP_400_BAD_REQUEST )
 
-        
+@extend_schema(tags=["Employee"])
 class EmployeeView(viewsets.GenericViewSet):
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()

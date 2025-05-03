@@ -3,11 +3,13 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema
 
 from .models import *
 from .serializers import *
 from .filters import *
 
+@extend_schema(tags=["Purchase"])
 class PurchaseView(viewsets.GenericViewSet):
     serializer_class = PurchaseSerializer
     queryset = Purchase.objects.all()
