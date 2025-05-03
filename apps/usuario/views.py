@@ -179,8 +179,7 @@ class UsuarioDetailView(viewsets.GenericViewSet):
         # INFO: Verificar si tiene invoice
         if instance.invoice:
             invoice = instance.invoice
-            invoice.total = invoice.total + float(serializer.validated_data['subtotal']) - instance.subtotal
-            invoice.save()
+            invoice.calculate_total()
         return Response(serializer.data)
     
     def destroy(self, request, *args, **kwargs):

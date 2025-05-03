@@ -96,6 +96,9 @@ class UsuarioDetail(TimeStampedModel):
         db_table = "UsuarioDetail"
         verbose_name = "UsuarioDetail"
     
+    def __str__(self):
+        return f"{self.id} - {self.usuario} - {self.description} - {self.status}"
+    
     @property
     def invoice_number(self):
         return self.invoice.id if self.invoice else None

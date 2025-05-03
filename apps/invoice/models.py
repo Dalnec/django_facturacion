@@ -103,3 +103,16 @@ class Invoice(TimeStampedModel):
             return math.ceil(number)
         else:
             return math.floor(number)
+    
+    def calculate_total(self):
+        from django.db.models import Sum
+        # INFO: Actualiza el 'detalle del usuario' donde estado debe ser true para agregar al detalle del recibo
+        detail = self.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=True, status=True)
+        # INFO: Actualiza total de invoice en caso tenga detalle
+        if detail.exists():
+            income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
+            outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
+            self.total = Invoice.custom_round(self.subtotal + income - outcome)
+        else:
+            self.total = self.subtotal
+        self.save() 
