@@ -53,6 +53,7 @@ class TicketBodySerializer(serializers.ModelSerializer):
         # details = UsuarioDetailTicketSerializer(usuario_detail, many=True).data
         # if details:
         #     return str(Decimal(obj.total) + sum(Decimal(detail['subtotal']) for detail in details))
+        # obj.calculate_total()
         return str(obj.total)
 
 class InvoiceSerializer(serializers.ModelSerializer):
