@@ -107,7 +107,7 @@ class Invoice(TimeStampedModel):
     def calculate_total(self):
         from django.db.models import Sum
         # INFO: Actualiza el 'detalle del usuario' donde estado debe ser true para agregar al detalle del recibo
-        detail = self.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=True, status=True)
+        detail = self.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=False, status=True)
         # INFO: Actualiza total de invoice en caso tenga detalle
         if detail.exists():
             income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
