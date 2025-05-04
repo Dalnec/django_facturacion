@@ -12,6 +12,8 @@ class SettingsSerializer(serializers.Serializer):
     height = serializers.CharField()
     width = serializers.CharField()
     length = serializers.CharField()
+    penalty_amount = serializers.IntegerField()
+    auto_penalty = serializers.BooleanField()
 
     def to_representation(self, instance):
         """
