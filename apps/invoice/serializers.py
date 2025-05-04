@@ -73,7 +73,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
     def get_ticket(self, obj):
         header = TicketHeaderSerializer(obj).data
         body = TicketBodySerializer(obj).data
-        usuario_detail = obj.fk_usuariodetail_invoice.filter(invoice__isnull=False,status=True)
+        usuario_detail = obj.fk_usuariodetail_invoice.filter(invoice__isnull=False, status=True)
         details = UsuarioDetailTicketSerializer(usuario_detail, many=True).data
         # return {
         #     'header': header,

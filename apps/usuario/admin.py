@@ -10,6 +10,8 @@ class UsuarioResource(resources.ModelResource):
 class UsuarioAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     resource_class = UsuarioResource
 
+# class UsuarioDetailAdmin(admin.ModelAdmin):
+#     list_filter = ("usuario",)
 
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(UsuarioDetail)
