@@ -44,7 +44,6 @@ class UsuarioView(viewsets.GenericViewSet):
 
     def create(self, request, *args, **kwargs):
         with transaction.atomic():
-            print(request.data)
             ci = request.data.get('ci', None)
             if not ci:
                 ci = User.generate_username()
@@ -56,9 +55,9 @@ class UsuarioView(viewsets.GenericViewSet):
             user = user_serializer.save()
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            ususario = serializer.save(user=user)
-            ususario.code = usuario.generate_code()
-            ususario.save()
+            usuario = serializer.save(user=user)
+            usuario.code = usuario.generate_code()
+            usuario.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):
