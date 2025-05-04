@@ -47,8 +47,10 @@ class UsuarioView(viewsets.GenericViewSet):
             print(request.data)
             ci = request.data.get('ci', None)
             if not ci:
-                request.data['username'] = User.generate_username()
-                request.data['password'] = User.generate_username()
+                ci = User.generate_username()
+                request.data['ci'] = ci
+                request.data['username'] = ci
+                request.data['password'] = ci
             user_serializer = UserSerializer(data=request.data)
             user_serializer.is_valid(raise_exception=True)
             user = user_serializer.save()
