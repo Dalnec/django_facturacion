@@ -52,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     @classmethod
     def generate_username(cls):
         count = User.objects.count() + 1
-        return f"{str(count).zfill(6)}"
+        return f"{str(count).zfill(7)}"
 
         
 class Employee(TimeStampedModel):
