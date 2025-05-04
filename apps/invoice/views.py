@@ -21,11 +21,13 @@ from xhtml2pdf import pisa
 
 from apps.usuario.models import Usuario, UsuarioDetail
 from apps.distric.models import Distric
-from datetime import date
+from datetime import date, datetime
 from decimal import Decimal
 from .models import *
 from .serializers import *
 from .filters import *
+
+from dateutil.relativedelta import relativedelta
 
 @extend_schema(tags=["Invoice"])
 class InvoiceView(viewsets.GenericViewSet):
@@ -89,6 +91,10 @@ class InvoiceView(viewsets.GenericViewSet):
             serializer = self.get_serializer(data=data)
             serializer.is_valid(raise_exception=True)
             invoice = serializer.save()
+
+            today = datetime.today()
+            last_month = today - relativedelta(months=1)
+            invoice.billing_month = last_month.replace(day=1)
 
             # Generacion de multa
             if distric.settings["auto_penalty"]:

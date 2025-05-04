@@ -3,6 +3,7 @@ import math
 from django.db import models
 from model_utils.models import TimeStampedModel
 from decimal import Decimal
+from apps.distric.models import Distric
 
 class Invoice(TimeStampedModel):
 
@@ -20,6 +21,7 @@ class Invoice(TimeStampedModel):
     subtotal = models.DecimalField("SubTotal", max_digits=18, decimal_places=2, blank=True, null=True)
     status = models.CharField("Estado", max_length=1, choices=STATUS_CHOICES, default='D')
     observations = models.CharField('Observaciones', max_length=255, blank=True, null=True)
+    billing_month = models.DateField("Mes Facturado", blank=True, null=True)
 
     class Meta:
         db_table = 'Invoice'
@@ -32,8 +34,13 @@ class Invoice(TimeStampedModel):
     
     @property
     def period(self):
-        year = self.read_date.strftime('%Y')
-        month = self.read_date.strftime('%m')
+        settings = Distric.objects.get(pk=1).settings
+        if not settings["collect_previous_month"]:
+            year = self.read_date.strftime('%Y')
+            month = self.read_date.strftime('%m')
+        else:
+            year = self.billing_month.strftime('%Y')
+            month = self.billing_month.strftime('%m')
         if month == '01':
             month = 'Enero'
         elif month == '02':

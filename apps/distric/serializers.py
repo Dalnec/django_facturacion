@@ -15,6 +15,7 @@ class SettingsSerializer(serializers.Serializer):
     penalty_amount = serializers.IntegerField()
     auto_penalty = serializers.BooleanField()
     force_ci = serializers.BooleanField()
+    collect_previous_month = serializers.BooleanField()
 
     def to_representation(self, instance):
         """
