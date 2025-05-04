@@ -144,6 +144,17 @@ class InvoiceView(viewsets.GenericViewSet):
                 invoice.total = invoice.subtotal
             invoice.save()
 
+            # validacion de totales en caso existan invoices mayores
+            invoices = Invoice.objects.filter(usuario=data['usuario'], id__gt=invoice.id)
+            if invoices.exists():
+                for invoice in invoices:
+                    detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id)
+                    if detail.exists():
+                        income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
+                        outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
+                        invoice.total = Invoice.custom_round(invoice.subtotal + income - outcome)
+                        invoice.save()
+
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def destroy(self, request, *args, **kwargs):
