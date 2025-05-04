@@ -2,6 +2,7 @@ import uuid
 import math
 from django.db import models
 from model_utils.models import TimeStampedModel
+from decimal import Decimal
 
 class Invoice(TimeStampedModel):
 
@@ -91,7 +92,7 @@ class Invoice(TimeStampedModel):
     
     @property
     def measured_diff(self):
-        return round(float(self.measured) - float(self.previous_measured), 2)
+        return round(Decimal(self.measured) - Decimal(self.previous_measured), 2)
 
     @property
     def status_description(self):
