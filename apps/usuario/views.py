@@ -8,6 +8,7 @@ from django.db import transaction
 
 from apps.user.serializers import UserSerializer
 from apps.purchase.models import Purchase
+from apps.user.models import User
 from .models import *
 from .serializers import *
 from .filters import *
@@ -43,12 +44,19 @@ class UsuarioView(viewsets.GenericViewSet):
 
     def create(self, request, *args, **kwargs):
         with transaction.atomic():
+            print(request.data)
+            ci = request.data.get('ci', None)
+            if not ci:
+                request.data['username'] = User.generate_username()
+                request.data['password'] = User.generate_username()
             user_serializer = UserSerializer(data=request.data)
             user_serializer.is_valid(raise_exception=True)
             user = user_serializer.save()
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            serializer.save(user=user)
+            ususario = serializer.save(user=user)
+            ususario.code = usuario.generate_code()
+            ususario.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, *args, **kwargs):

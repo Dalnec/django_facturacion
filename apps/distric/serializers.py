@@ -14,6 +14,7 @@ class SettingsSerializer(serializers.Serializer):
     length = serializers.CharField()
     penalty_amount = serializers.IntegerField()
     auto_penalty = serializers.BooleanField()
+    force_ci = serializers.BooleanField()
 
     def to_representation(self, instance):
         """

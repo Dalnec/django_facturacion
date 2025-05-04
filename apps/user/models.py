@@ -45,6 +45,15 @@ class User(AbstractBaseUser, PermissionsMixin):
             return f"{self.username} -- {self.profile.description}"
         return f"{self.username} -- Sin perfil"
 
+    def generate_username(self):
+        count = User.objects.count() + 1
+        return f"{str(count).zfill(6)}"
+
+    @classmethod
+    def generate_username(cls):
+        count = User.objects.count() + 1
+        return f"{str(count).zfill(6)}"
+
         
 class Employee(TimeStampedModel):
     STATUS_CHOICES = [

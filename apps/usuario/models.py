@@ -78,6 +78,10 @@ class Usuario(TimeStampedModel):
         if not invoice:
             return None
         return f"{invoice.period} -> {invoice.measured}"
+    
+    def generate_code(self):
+        # caracter "M" y llenado con dos ceros seguido con el id
+        return f"M{str(self.id).zfill(4)}"
 
 
 class UsuarioDetail(TimeStampedModel):
