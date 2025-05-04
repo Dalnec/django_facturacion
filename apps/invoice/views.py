@@ -20,6 +20,7 @@ from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
 from apps.usuario.models import Usuario, UsuarioDetail
+from apps.distric.models import Distric
 from datetime import date
 from decimal import Decimal
 from .models import *
@@ -56,6 +57,7 @@ class InvoiceView(viewsets.GenericViewSet):
             purchase = Purchase.objects.all().order_by('id').last()
             invoices = Invoice.objects.filter(usuario=data['usuario']).order_by('id')
             usuario = Usuario.objects.get(id=data['usuario'])
+            distric = Distric.objects.get(id=1)
             measured = 0
             last_measured = 0
 
@@ -65,6 +67,9 @@ class InvoiceView(viewsets.GenericViewSet):
                 last_measured = usuario.last_measured
             else:
                 last_measured = invoices.last().measured
+                # Generacion de multa
+                # if last_measured.status == 'D':
+                #     UsuarioDetail.generate_mora(usuario)
 
             if usuario.restart:
                 measured = float(data['measured'])
@@ -75,9 +80,10 @@ class InvoiceView(viewsets.GenericViewSet):
             if (measured < 0):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             
-            depts = Invoice.objects.filter(usuario=data['usuario'], status='D')
-            if depts.exists():
-                UsuarioDetail.generate_mora(usuario)
+            if distric.settings["auto_penalty"]:
+                depts = Invoice.objects.filter(usuario=data['usuario'], status='D')
+                if depts.exists():
+                    UsuarioDetail.generate_mora(usuario, distric.settings["penalty_amount"])
 
             data['price'] = purchase.price
             if (measured > 0 and measured < 1):
