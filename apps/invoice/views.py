@@ -148,6 +148,7 @@ class InvoiceView(viewsets.GenericViewSet):
             invoices = Invoice.objects.filter(usuario=data['usuario'], id__gt=invoice.id)
             if invoices.exists():
                 for invoice in invoices:
+                    invoice.subtotal = Invoice.custom_round(invoice.measured * invoice.price)
                     detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id)
                     if detail.exists():
                         income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
