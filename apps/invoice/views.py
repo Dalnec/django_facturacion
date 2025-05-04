@@ -145,7 +145,7 @@ class InvoiceView(viewsets.GenericViewSet):
             invoice.save()
 
             # validacion de totales en caso existan invoices mayores
-            invoices = Invoice.objects.filter(usuario=data['usuario'], id__gt=invoice.id)
+            invoices = Invoice.objects.filter(usuario__id=usuario.id, id__gt=invoice.id)
             if invoices.exists():
                 for i in invoices:
                     i.subtotal = Invoice.custom_round(i.measured * i.price)
