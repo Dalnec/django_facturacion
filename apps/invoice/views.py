@@ -80,11 +80,6 @@ class InvoiceView(viewsets.GenericViewSet):
             if (measured < 0):
                 return Response(status=status.HTTP_400_BAD_REQUEST)
             
-            if distric.settings["auto_penalty"]:
-                depts = Invoice.objects.filter(usuario=data['usuario'], status='D')
-                if depts.exists():
-                    UsuarioDetail.generate_mora(usuario, distric.settings["penalty_amount"])
-
             data['price'] = purchase.price
             if (measured > 0 and measured < 1):
                 data['subtotal'] = purchase.price
@@ -94,6 +89,12 @@ class InvoiceView(viewsets.GenericViewSet):
             serializer = self.get_serializer(data=data)
             serializer.is_valid(raise_exception=True)
             invoice = serializer.save()
+
+            # Generacion de multa
+            if distric.settings["auto_penalty"]:
+                depts = Invoice.objects.filter(usuario=data['usuario'], status='D')
+                if depts.exists():
+                    UsuarioDetail.generate_mora(usuario, distric.settings["penalty_amount"], invoice)
 
             # INFO: Actualiza el 'detalle del usuario' donde estado debe ser true para agregar al detalle del recibo
             detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=False, status=True)

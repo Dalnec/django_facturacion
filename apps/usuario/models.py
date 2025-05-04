@@ -108,11 +108,12 @@ class UsuarioDetail(TimeStampedModel):
         return dict(self.invoice.STATUS_CHOICES)[self.invoice.status] if self.invoice else None
 
     @classmethod
-    def generate_mora(cls, usuario, amount):
+    def generate_mora(cls, usuario, amount, invoice=None):
          cls.objects.create(
             usuario = usuario,
             description = 'Cobro de Mora',
             price = amount,
             quantity = 1,
             subtotal = amount,
+            invoice = invoice
         )
