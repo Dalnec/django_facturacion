@@ -154,7 +154,9 @@ class InvoiceView(viewsets.GenericViewSet):
                         income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
                         outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
                         invoice.total = Invoice.custom_round(invoice.subtotal + income - outcome)
-                        invoice.save()
+                    else:
+                        invoice.total = invoice.subtotal
+                    invoice.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     
