@@ -90,7 +90,7 @@ class InvoiceView(viewsets.GenericViewSet):
             invoice = serializer.save()
 
             # INFO: Actualiza el 'detalle del usuario' donde estado debe ser true para agregar al detalle del recibo
-            detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=True, status=True)
+            detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice__isnull=False, status=True)
             # INFO: Actualiza total de invoice en caso tenga detalle
             if detail.exists():
                 income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
