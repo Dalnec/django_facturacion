@@ -147,16 +147,16 @@ class InvoiceView(viewsets.GenericViewSet):
             # validacion de totales en caso existan invoices mayores
             invoices = Invoice.objects.filter(usuario=data['usuario'], id__gt=invoice.id)
             if invoices.exists():
-                for invoice in invoices:
-                    invoice.subtotal = Invoice.custom_round(invoice.measured * invoice.price)
-                    detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id)
-                    if detail.exists():
-                        income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
-                        outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
-                        invoice.total = Invoice.custom_round(invoice.subtotal + income - outcome)
+                for i in invoices:
+                    i.subtotal = Invoice.custom_round(i.measured * i.price)
+                    v_detail = i.usuario.fk_usuariodetail_usuario.filter(invoice=i.id)
+                    if v_detail.exists():
+                        income = v_detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
+                        outcome = v_detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
+                        i.total = Invoice.custom_round(i.subtotal + income - outcome)
                     else:
-                        invoice.total = invoice.subtotal
-                    invoice.save()
+                        i.total = i.subtotal
+                    i.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     
