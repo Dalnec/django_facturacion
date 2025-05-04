@@ -94,7 +94,7 @@ class InvoiceView(viewsets.GenericViewSet):
 
             today = datetime.today()
             last_month = today - relativedelta(months=1)
-            invoice.billing_month = last_month.replace(day=1)
+            invoice.billing_month = last_month.replace(day=1).date()
 
             # Generacion de multa
             if distric.settings["auto_penalty"]:
