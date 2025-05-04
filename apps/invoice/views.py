@@ -92,7 +92,7 @@ class InvoiceView(viewsets.GenericViewSet):
 
             # Generacion de multa
             if distric.settings["auto_penalty"]:
-                depts = Invoice.objects.filter(usuario=data['usuario'], status='D')
+                depts = Invoice.objects.filter(usuario=data['usuario'], status='D').exclude(id=invoice.id)
                 if depts.exists():
                     UsuarioDetail.generate_mora(usuario, distric.settings["penalty_amount"], invoice)
 
