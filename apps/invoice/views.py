@@ -135,7 +135,7 @@ class InvoiceView(viewsets.GenericViewSet):
             serializer.is_valid(raise_exception=True)
             invoice = serializer.save()
             
-            detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id)
+            detail = invoice.usuario.fk_usuariodetail_usuario.filter(invoice=invoice.id, status=True)
             if detail.exists():
                 income = detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
                 outcome = detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
@@ -149,7 +149,7 @@ class InvoiceView(viewsets.GenericViewSet):
             if invoices.exists():
                 for i in invoices:
                     i.subtotal = Invoice.custom_round(i.measured * i.price)
-                    v_detail = i.usuario.fk_usuariodetail_usuario.filter(invoice=i.id)
+                    v_detail = i.usuario.fk_usuariodetail_usuario.filter(invoice=i.id, status=True)
                     if v_detail.exists():
                         income = v_detail.filter(is_income=True).aggregate(total=Sum('subtotal'))['total'] or 0
                         outcome = v_detail.filter(is_income=False).aggregate(total=Sum('subtotal'))['total'] or 0
