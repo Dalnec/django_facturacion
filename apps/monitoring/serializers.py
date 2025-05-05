@@ -5,6 +5,7 @@ from apps.distric.models import Distric
 from .models import *
 
 class MonitoringSerializer(serializers.ModelSerializer):
+    interval_time_device = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Monitoring
         fields = '__all__'
@@ -14,6 +15,10 @@ class MonitoringSerializer(serializers.ModelSerializer):
         monitoring.read_date = datetime.datetime.now()
         monitoring.save()
         return monitoring
+    
+    def get_interval_time_device(self, obj):
+        distric = Distric.objects.get(id=1)
+        return distric.settings["interval_time_device"]
 
 class LastMonitoringSerializer(serializers.ModelSerializer):
     isConnected = serializers.SerializerMethodField(read_only=True)
