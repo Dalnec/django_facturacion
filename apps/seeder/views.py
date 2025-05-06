@@ -22,7 +22,7 @@ class SeedingView(GenericViewSet):
     def create(self, request, *args, **kwargs):
 
         try:
-            User.objects.create_superuser('ADMIN', 'admin')
+            # User.objects.create_superuser('ADMIN', 'admin')
             Profile.objects.get_or_create( id=1, description="ADMINISTRADOR" )
             Profile.objects.get_or_create( id=2, description="LECTURADOR" )
             Profile.objects.get_or_create( id=3, description="USUARIO" )
@@ -51,12 +51,12 @@ class SeedingView(GenericViewSet):
             
             Distric.objects.get_or_create(
                 id=1,
-                name="OTB BARRIO LUZS",
+                name="OTB BARRIO LUZ",
                 address="CALLE DOS DE MAYO 799",
                 representative="JIMMY",
                 phone="65359585",
                 email="otb@otb.com",
-                settings={"width": "240", "height": "240", "length": "230", "interval_time_device": 1500000}
+                settings={"width": "240", "height": "240", "length": "230", "force_ci": True, "auto_penalty": True, "penalty_amount": 50, "interval_time_device": 1200000, "collect_previous_month": False}
             )
 
             return Response('Seeding Completed!', status=status.HTTP_200_OK)
@@ -67,7 +67,7 @@ class SeedingView(GenericViewSet):
     def seed_employees(self, *args, **kwargs):
         employee_data = [
             {
-                "ci": "7456321",
+                "ci": "7777777",
                 "names": "administrador",
                 "lastnames": "administrador",
                 "email": "admin@admin.com",
