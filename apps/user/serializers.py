@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from apps.usuario.serializers import UsuarioSerializer
-from .models import *
+from .models import Employee, Profile, User
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:

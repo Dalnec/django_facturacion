@@ -1,3 +1,4 @@
+import json
 from rest_framework import viewsets, status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
@@ -9,11 +10,8 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from apps.purchase.models import Purchase
 
 from django.http import HttpResponse
-from django.template.loader import get_template
 from django.db import transaction
-from django.db.models import Sum, Value, F, Subquery, OuterRef, TextField, When, Case
-from django.db.models.functions import Concat
-from django.contrib.postgres.aggregates import StringAgg
+from django.db.models import Sum
 # from io import BytesIO
 import io
 from django.template.loader import render_to_string
@@ -23,9 +21,9 @@ from apps.usuario.models import Usuario, UsuarioDetail
 from apps.distric.models import Distric
 from datetime import date, datetime
 from decimal import Decimal
-from .models import *
-from .serializers import *
-from .filters import *
+from .models import Invoice  
+from .serializers import InvoiceSerializer  
+from .filters import InvoiceFilter, InvoicePagination  
 
 from dateutil.relativedelta import relativedelta
 
@@ -253,7 +251,7 @@ class InvoiceView(viewsets.GenericViewSet):
         pisa.CreatePDF(io.BytesIO(html.encode("UTF-8")), dest=pdf_file)
         pdf_file.seek(0)
         response = HttpResponse(pdf_file, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="Reporte_de_facturas.pdf"'
+        response['Content-Disposition'] = 'attachment; filename="Reporte_de_facturas.pdf"'
         return response
     
     def period(self, month, year):
@@ -317,7 +315,7 @@ class InvoiceView(viewsets.GenericViewSet):
         pisa.CreatePDF(io.BytesIO(html.encode("UTF-8")), dest=pdf_file)
         pdf_file.seek(0)
         response = HttpResponse(pdf_file, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="Reporte_de_facturas.pdf"'
+        response['Content-Disposition'] = 'attachment; filename="Reporte_de_facturas.pdf"'
         return response
 
 @extend_schema(tags=["Invoice"])

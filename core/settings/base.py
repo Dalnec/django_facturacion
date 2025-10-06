@@ -1,4 +1,3 @@
-from datetime import timedelta
 from pathlib import Path
 import environ
 
@@ -37,6 +36,7 @@ THIRD_APPS = [
     "corsheaders",
     'import_export',
     'drf_spectacular',
+    'simple_history',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'

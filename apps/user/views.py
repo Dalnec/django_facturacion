@@ -9,9 +9,9 @@ from django.contrib.auth import authenticate
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 
-from .models import *
-from .serializers import *
-from .filters import *
+from .models import Employee, Profile, User
+from .serializers import EmployeeSerializer, EmployeeUserSerializer, LoginSerializer, ProfileSerializer, UserSerializer, UsuarioUserSerializer
+from .filters import EmployeeFilter, EmployeePagination, UserFilter, UserPagination
 
 @extend_schema(tags=["Profile"])
 class ProfileView(viewsets.GenericViewSet):
@@ -128,7 +128,7 @@ class Login(ObtainAuthToken):
                 if user.fk_employee_user.status == 'I':
                     return Response({'error': 'Comuniquese con el administrador'}, status=status.HTTP_400_BAD_REQUEST)
                 serializer = EmployeeUserSerializer(user)
-            token, created = Token.objects.get_or_create(user=user)
+            token, _ = Token.objects.get_or_create(user=user)
             return Response({
                 'token': token.key,
                 "user": serializer.data,

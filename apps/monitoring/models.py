@@ -1,5 +1,4 @@
 import datetime
-from django.utils import timezone
 from django.db import models
 from model_utils.models import TimeStampedModel
 from apps.distric.models import Distric

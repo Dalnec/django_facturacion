@@ -1,16 +1,10 @@
 import json
-from tablib import Dataset
 from rest_framework import status
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.response import Response
 
-from apps.invoice.admin import InvoiceResource
-from apps.monitoring.admin import MonitoringResource
-from apps.purchase.admin import PurchaseResource
-
-from apps.user.models import Profile, User
+from apps.user.models import Profile
 from apps.distric.models import Distric
-from apps.usuario.models import Usuario
 from apps.user.serializers import UserSerializer, EmployeeSerializer
 from apps.usuario.serializers import UsuarioSerializer
 

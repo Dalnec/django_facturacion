@@ -4,7 +4,6 @@ from rest_framework.decorators import action
 from rest_framework.filters import OrderingFilter
 from rest_framework.renderers import TemplateHTMLRenderer
 from django_filters.rest_framework import DjangoFilterBackend
-from django.db.models import F, ExpressionWrapper, FloatField
 from drf_spectacular.utils import extend_schema
 
 import io
@@ -12,9 +11,9 @@ from django.http import HttpResponse
 from django.template.loader import render_to_string
 from xhtml2pdf import pisa
 
-from .models import *
-from .serializers import *
-from .filters import *
+from .models import Monitoring
+from .serializers import LastMonitoringSerializer, MonitoringSerializer
+from .filters import MonitoringFilter, MonitoringPagination
 
 @extend_schema(tags=["Monitoring"])
 class MonitoringView(viewsets.GenericViewSet):
@@ -99,7 +98,7 @@ class MonitoringView(viewsets.GenericViewSet):
         pisa.CreatePDF(io.BytesIO(html.encode("UTF-8")), dest=pdf_file)
         pdf_file.seek(0)
         response = HttpResponse(pdf_file, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="Reporte_Monitoreo.pdf"'
+        response['Content-Disposition'] = 'attachment; filename="Reporte_Monitoreo.pdf"'
         return response
     
     def period(self, month, year):

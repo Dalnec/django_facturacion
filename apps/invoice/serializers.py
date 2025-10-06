@@ -1,7 +1,7 @@
 import json
 from decimal import Decimal
 from rest_framework import serializers
-from .models import *
+from .models import Invoice
 from apps.usuario.serializers import UsuarioDetailTicketSerializer
 
 class TicketHeaderSerializer(serializers.ModelSerializer):
