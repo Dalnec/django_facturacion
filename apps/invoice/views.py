@@ -7,6 +7,7 @@ from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_spectacular.utils import extend_schema
 from rest_framework.renderers import TemplateHTMLRenderer
+from apps.auditlog.serializers import InvoiceHistorySerializer
 from apps.purchase.models import Purchase
 
 from django.http import HttpResponse
@@ -23,7 +24,8 @@ from datetime import date, datetime
 from decimal import Decimal
 from .models import Invoice  
 from .serializers import InvoiceSerializer  
-from .filters import InvoiceFilter, InvoicePagination  
+from .filters import InvoiceFilter, InvoicePagination
+from apps.auditlog.models import InvoiceHistory
 
 from dateutil.relativedelta import relativedelta
 
@@ -127,6 +129,7 @@ class InvoiceView(viewsets.GenericViewSet):
             partial = kwargs.pop('partial', False)
             data = request.data.copy()
             instance = self.get_object()
+            before = Invoice.objects.get(pk=instance.pk)
 
             usuario = instance.usuario
             if usuario.restart:
@@ -168,6 +171,13 @@ class InvoiceView(viewsets.GenericViewSet):
                     else:
                         i.total = i.subtotal
                     i.save()
+            
+            InvoiceHistory.objects.create(
+                invoice=invoice,
+                employee=request.user.fk_employee_user if request.user.is_authenticated else None,
+                changes=InvoiceHistory.get_diff(before, invoice),
+                action='update'
+            )
 
         return Response(serializer.data, status=status.HTTP_200_OK)
     
@@ -317,6 +327,14 @@ class InvoiceView(viewsets.GenericViewSet):
         response = HttpResponse(pdf_file, content_type='application/pdf')
         response['Content-Disposition'] = 'attachment; filename="Reporte_de_facturas.pdf"'
         return response
+    
+    @action(detail=True, methods=['GET'], serializer_class=InvoiceHistorySerializer, filterset_class=None)
+    def history(self, request, pk=None):
+        instance = self.get_object()
+        history = InvoiceHistory.objects.filter(invoice__id=instance.id)
+        serializer = self.get_serializer(history, many=True)
+        # data = serializer.data
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 @extend_schema(tags=["Invoice"])
 class InvoiceTicketView(RetrieveAPIView):

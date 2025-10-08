@@ -27,6 +27,7 @@ LOCAL_APPS = [
     "apps.user",
     "apps.usuario",
     "apps.seeder",
+    "apps.auditlog",
 ]
 
 THIRD_APPS = [
@@ -36,7 +37,6 @@ THIRD_APPS = [
     "corsheaders",
     'import_export',
     'drf_spectacular',
-    'simple_history',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
