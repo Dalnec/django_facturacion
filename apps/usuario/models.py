@@ -52,18 +52,21 @@ class Usuario(TimeStampedModel):
         invoices = self.fk_invoice_usuario
         if not invoices.exists():
             return True
-        # last_invoice = invoices.first()
         # # validar que la factura solo se realice una vez por mes y sea consecutivo
-        # now = timezone.now()
         # # TODO: validar 20 dias por configuracion
-        # if last_invoice.read_date.month != now.month and last_invoice.read_date <= now - datetime.timedelta(days=20):
-        #     return True
-        # else:
-        #     return False
         last_invoice = invoices.order_by('-read_date').first()
         now = timezone.now()
         twenty_days_ago = now - datetime.timedelta(days=20)
-        if last_invoice.read_date.month != now.month and last_invoice.read_date <= twenty_days_ago:
+        # if last_invoice.read_date.month != now.month and last_invoice.read_date <= twenty_days_ago:
+        #     return True
+        # else:
+        #     return False
+        
+        # Validar que sea un mes y año distinto al actual
+        is_different_month = last_invoice.read_date.month != now.month
+        is_different_year = last_invoice.read_date.year != now.year
+
+        if (is_different_month or is_different_year) and last_invoice.read_date <= twenty_days_ago:
             return True
         else:
             return False
