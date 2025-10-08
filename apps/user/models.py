@@ -87,4 +87,4 @@ class Employee(TimeStampedModel):
     
     @property
     def fullname(self):
-        return f"{self.names} {self.lastnames}"
+        return f"{self.names or ''} {self.lastnames or ''}"

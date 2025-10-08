@@ -331,7 +331,7 @@ class InvoiceView(viewsets.GenericViewSet):
     @action(detail=True, methods=['GET'], serializer_class=InvoiceHistorySerializer, filterset_class=None)
     def history(self, request, pk=None):
         instance = self.get_object()
-        history = InvoiceHistory.objects.filter(invoice__id=instance.id)
+        history = InvoiceHistory.objects.filter(invoice__id=instance.id).order_by('-created')
         serializer = self.get_serializer(history, many=True)
         # data = serializer.data
         return Response(serializer.data, status=status.HTTP_200_OK)
